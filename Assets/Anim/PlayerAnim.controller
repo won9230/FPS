@@ -44,7 +44,7 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 100ce9ccda5735f49a457857e2bc02e4, type: 3}
-    m_Threshold: 0.33333334
+    m_Threshold: 0.25
     m_Position: {x: -0.02, y: 0.54}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -52,7 +52,7 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: af18ed367f3f8ae4996eb8de695c838c, type: 3}
-    m_Threshold: 0.6666667
+    m_Threshold: 0.5
     m_Position: {x: 0.01, y: 1.04}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -60,14 +60,22 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 94166512973d3d841a862f9501857228, type: 3}
-    m_Threshold: 1
+    m_Threshold: 0.75
     m_Position: {x: 0.02, y: -1.07}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Hor
     m_Mirror: 0
-  m_BlendParameter: Hor
-  m_BlendParameterY: Vec
+  - serializedVersion: 2
+    m_Motion: {fileID: 7400000, guid: d2009d578d24d5146a5bcd4ac9026bae, type: 3}
+    m_Threshold: 1
+    m_Position: {x: -1.05, y: -0.02}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: Hor
+    m_Mirror: 0
+  m_BlendParameter: horizontal
+  m_BlendParameterY: vertical
   m_MinThreshold: 0
   m_MaxThreshold: 1
   m_UseAutomaticThresholds: 1
@@ -82,13 +90,13 @@ AnimatorController:
   m_Name: PlayerAnim
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Hor
+  - m_Name: horizontal
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: Vec
+  - m_Name: vertical
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
