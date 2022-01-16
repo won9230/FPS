@@ -12,6 +12,7 @@ public class PlayerCtrl : MonoBehaviour
 
 	[SerializeField] private float cameraRotationLimit; //걸림
 	private float currentCameraRotationX = 0;
+	private float currentCameraRotationY = 0;
 
 	[SerializeField] private new Camera camera;
 	//기타
@@ -38,15 +39,17 @@ public class PlayerCtrl : MonoBehaviour
 	{
 		PlayerMove();
 		CharacterRotation();
-	}
-	private void CharacterRotation()
-	{
-		float rotationY = Input.GetAxisRaw("Mouse X");
-		Vector3 characterRotationY = new Vector3(0f, rotationY, 0f) * lookSensitivity;
-		rigidbody.MoveRotation(rigidbody.rotation * Quaternion.Euler(characterRotationY));
 		CameraRotation();
 	}
-	private void CameraRotation()
+	private void CharacterRotation() //좌우 회전
+	{
+		float yRotation = Input.GetAxisRaw("Mouse X");
+		float rotation = yRotation * lookSensitivity;
+		currentCameraRotationY += rotation;
+		transform.localEulerAngles = new Vector3(0f,currentCameraRotationY, 0f);
+
+	}
+	private void CameraRotation() //상하 회전
 	{
 		float rotationX = Input.GetAxisRaw("Mouse Y");
 		float cameraRotationX = rotationX * lookSensitivity;
@@ -55,7 +58,7 @@ public class PlayerCtrl : MonoBehaviour
 		camera.transform.localEulerAngles = new Vector3(currentCameraRotationX, 0f,0f);
 	}
 
-	private void PlayerMove()
+	private void PlayerMove() //걷기 달리기
 	{
 		float anyspeed,x,y;
 		x = Input.GetAxisRaw("Horizontal");
@@ -65,11 +68,15 @@ public class PlayerCtrl : MonoBehaviour
 		Vector3 moveX = transform.right * x;
 		Vector3 moveY = transform.forward * y;
 		if (Input.GetKey(KeyCode.LeftShift))
+		{
+			anim.OnMovement(x*0.5f, y*0.5f);
 			anyspeed = runspeed;
+		}
 		else if (Input.GetKeyUp(KeyCode.LeftShift))
+		{
+			anim.OnMovement(x, y);
 			anyspeed = walkspeed;
-
-		anim.OnMovement(x, y);
+		}
 
 		Vector3 velocity = (moveX + moveY).normalized * anyspeed;
 		rigidbody.MovePosition(transform.position + velocity * Time.deltaTime);
