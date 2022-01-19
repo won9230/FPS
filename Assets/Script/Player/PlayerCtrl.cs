@@ -69,6 +69,12 @@ public class PlayerCtrl : MonoBehaviour
 		float rotation = yRotation * lookSensitivity;
 		currentCameraRotationY += rotation;
 		transform.localEulerAngles = new Vector3(0f, currentCameraRotationY, 0f);
+
+		#region 임시
+		//float _yRotation = Input.GetAxisRaw("Mouse X");
+		//Vector3 charaterRotationY = new Vector3(0f, _yRotation, 0f) * lookSensitivity;
+		//rigidbody.MoveRotation(rigidbody.rotation * Quaternion.Euler(charaterRotationY));
+		#endregion
 	}
 	private void CameraRotation() //상하 회전
 	{
