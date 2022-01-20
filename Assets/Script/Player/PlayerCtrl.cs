@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCtrl : MonoBehaviour
+public class PlayerCtrl : LivingEntity
 {
 
 	[SerializeField] private float walkspeed; // 걷기 속도
@@ -43,7 +43,7 @@ public class PlayerCtrl : MonoBehaviour
 	}
 	#endregion
 
-	private void Start()
+	protected override void Start()
 	{
 		Cursor.visible = false;
 		Cursor.lockState = CursorLockMode.Locked;
