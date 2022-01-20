@@ -8,13 +8,13 @@ public class PlayerCtrl : MonoBehaviour
 
 	[SerializeField] private float walkspeed; // 걷기 속도
 	[SerializeField] private float runspeed; // 달리기 속도
-	[SerializeField] private float crouchspeed; // 앉기 속ㄷ도
+	[SerializeField] private float crouchspeed; // 앉기 속도
 	private float anyspeed;
 	[SerializeField] private float lookSensitivity;//마우스 감도
 	[SerializeField]private float jumpForce;
-	private bool isRun = false; //달리기 감지
+	[HideInInspector]public bool isRun = false; //달리기 감지
 	private bool isGround = true; // 바닥감지
-	private bool isCrouch = false; //앉기 감지
+	[HideInInspector] public bool isCrouch = false; //앉기 감지
 
 	[SerializeField] private float cameraRotationLimit; //걸림
 	private float currentCameraRotationX = 0;
@@ -30,6 +30,7 @@ public class PlayerCtrl : MonoBehaviour
 	private PlayerAnim anim;
 	private CapsuleCollider capsuleCollider;
 	public static PlayerCtrl instance = null;
+	[HideInInspector]public float x, y;
 
 	#region Singleton
 	private void Awake() //싱글톤
@@ -50,6 +51,7 @@ public class PlayerCtrl : MonoBehaviour
 		anim = GetComponent<PlayerAnim>();
 		originPosY = camera.transform.localPosition.y;
 		applyCrouchPosY = originPosY;
+		anyspeed = walkspeed;
 	}
 	private void Update()
 	{
@@ -87,10 +89,9 @@ public class PlayerCtrl : MonoBehaviour
 
 	private void PlayerMove() //걷기 달리기
 	{
-		float x, y;
 		x = Input.GetAxisRaw("Horizontal");
 		y = Input.GetAxisRaw("Vertical");
-		anyspeed = walkspeed;
+
 
 		Vector3 moveX = transform.right * x;
 		Vector3 moveY = transform.forward * y;
@@ -103,19 +104,24 @@ public class PlayerCtrl : MonoBehaviour
 		{
 			RunningStop();
 		}
-
 		Vector3 velocity = (moveX + moveY).normalized * anyspeed;
 		rigidbody.MovePosition(transform.position + velocity * Time.deltaTime);
 	}
 	private void Running()
 	{
-		isRun = true;
-		anyspeed = runspeed;
+		if (!isCrouch)
+		{
+			isRun = true;
+			anyspeed = runspeed;
+		}
 	}
 	private void RunningStop()
 	{
-		isRun = false;
-		anyspeed = walkspeed;
+		if (!isCrouch)
+		{
+			isRun = false;
+			anyspeed = walkspeed;
+		}
 	}
 	private void TryJump() //점프
 	{
@@ -158,9 +164,9 @@ public class PlayerCtrl : MonoBehaviour
 		while(_posY != applyCrouchPosY)
 		{
 			count++;
-			_posY = Mathf.Lerp(_posY, applyCrouchPosY, 0.3f);
+			_posY = Mathf.Lerp(_posY, applyCrouchPosY, 0.2f);
 			camera.transform.localPosition = new Vector3(0, _posY, 0);
-			if (count > 15)
+			if (count > 30)
 				break;
 			yield return null;
 		}

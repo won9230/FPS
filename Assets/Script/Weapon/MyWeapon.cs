@@ -25,7 +25,7 @@ public class MyWeapon : ScriptableObject
 	[Tooltip("재장전하는 장탄 수")]
 	public int reloadBulletCount;
 	[Tooltip("남아 있는 장탄 수")]
-	public int cureentBulletCount;
+	public int curentBulletCount;
 	[Tooltip("최대 소유 가능한 장탄 수")]
 	public int maxBulletCount;	
 	[Tooltip("현재 소유하고 있는 장탄 수")]
@@ -35,9 +35,12 @@ public class MyWeapon : ScriptableObject
 	public float retroActionForce;
 	[Tooltip("정조준시 반동")]
 	public float retroActionFineSightForce;
+	[Tooltip("에임 위치")]
+	public Vector3 fineSightOriginPos;
 	//[Tooltip("장전 딜레이")]
 	//public float gunReload;
 
 	//public Animator anim;
 	public AudioClip fire_Sound;
+
 }
