@@ -37,6 +37,8 @@ public class MyWeapon : ScriptableObject
 	public float retroActionFineSightForce;
 	[Tooltip("에임 위치")]
 	public Vector3 fineSightOriginPos;
+	[Tooltip("총알 프리펩")]
+	public GameObject bullet;
 	//[Tooltip("장전 딜레이")]
 	//public float gunReload;
 

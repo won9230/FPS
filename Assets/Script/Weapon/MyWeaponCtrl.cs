@@ -3,16 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ObjectPoolingManager))]
 public class MyWeaponCtrl : MonoBehaviour
 {
 	public MyWeapon weapon;
-	public GameObject FineSight;
+	public GameObject fineSightPos;
 
 	private float currentFireRate;
 	private bool isReload = false;
 	private bool isFineSightMode = false;
 	[SerializeField] private Vector3 originPos;
 	[SerializeField] private Vector3 fineSightOriginPos;
+	public GameObject bulletPos;
 
 
 	private AudioSource audioSource;
@@ -56,16 +58,19 @@ public class MyWeaponCtrl : MonoBehaviour
 	}
 	private void Shoot()
 	{
+		StopAllCoroutines();
 		weapon.curentBulletCount--;
 		currentFireRate = weapon.fireRate; // 연사속도
+		CerateBullet();
 		anim.SetTrigger("Shoot");
+		StartCoroutine(RetroAction());
 		PlaySE(weapon.fire_Sound);
-		Debug.Log("발사");
 	}
 	private void Reload()
 	{
 		if (Input.GetKeyDown(KeyCode.R) && !isReload && weapon.curentBulletCount < weapon.reloadBulletCount)
 		{
+			CancelFineSight();
 			StartCoroutine(ReloadCoroutime());
 		}
 	}
@@ -106,7 +111,14 @@ public class MyWeaponCtrl : MonoBehaviour
 	
 	private void TryFineSight()
 	{
-		if (Input.GetMouseButtonDown(1))
+		if (Input.GetMouseButtonDown(1) && !isReload)
+		{
+			FineSight();
+		}
+	}
+	public void CancelFineSight()
+	{
+		if (isFineSightMode)
 		{
 			FineSight();
 		}
@@ -117,27 +129,69 @@ public class MyWeaponCtrl : MonoBehaviour
 		anim.SetBool("FineSightMode", isFineSightMode);
 		if (isFineSightMode)
 		{
+			StopAllCoroutines();
 			StartCoroutine(FineSightActive());
 		}
 		else
 		{
+			StopAllCoroutines();
 			StartCoroutine(FineSightDective());
 		}
 	}
 	IEnumerator FineSightActive()
 	{
-			while(this.transform.localPosition != fineSightOriginPos)
+			while(fineSightPos.transform.localPosition != weapon.fineSightOriginPos)
 		{
-			this.transform.localPosition = Vector3.Lerp(this.transform.localPosition, fineSightOriginPos, 0.2f);
+			fineSightPos.transform.localPosition = Vector3.Lerp(fineSightPos.transform.localPosition, weapon.fineSightOriginPos, 0.2f);
 			yield return null;
 		}
 	}
 	IEnumerator FineSightDective()
 	{
-		while (transform.localPosition != originPos)
+		while (fineSightPos.transform.localPosition != originPos)
 		{
-			transform.localPosition= Vector3.Lerp(transform.localPosition, originPos, 0.2f);
+			fineSightPos.transform.localPosition = Vector3.Lerp(fineSightPos.transform.localPosition, originPos, 0.2f);
 			yield return null;
 		}
+	}
+	IEnumerator RetroAction()
+	{
+		Vector3 recoilBack = new Vector3(originPos.x, originPos.y,weapon.retroActionForce);
+		Vector3 retroActionRecoil = new Vector3(weapon.fineSightOriginPos.x, weapon.fineSightOriginPos.y, weapon.retroActionFineSightForce);
+		if (!isFineSightMode)
+		{
+			fineSightPos.transform.localPosition = originPos;
+			while (fineSightPos.transform.localPosition.z >= weapon.retroActionForce + 0.02f) //반동
+			{
+				fineSightPos.transform.localPosition = Vector3.Lerp(fineSightPos.transform.localPosition, recoilBack, 0.4f);
+				yield return null;
+			}
+			while(fineSightPos.transform.localPosition != originPos) //원위치
+			{
+				fineSightPos.transform.localPosition = Vector3.Lerp(fineSightPos.transform.localPosition, originPos, 0.1f);
+				yield return null;
+			}
+		}
+		else
+		{
+			fineSightPos.transform.localPosition = weapon.fineSightOriginPos;
+			while (fineSightPos.transform.localPosition.z >= weapon.retroActionFineSightForce + 0.02f) //반동
+			{
+				fineSightPos.transform.localPosition = Vector3.Lerp(fineSightPos.transform.localPosition, retroActionRecoil, 0.4f);
+				yield return null;
+			}
+			while (fineSightPos.transform.localPosition != originPos) //원위치
+			{
+				fineSightPos.transform.localPosition = Vector3.Lerp(fineSightPos.transform.localPosition, weapon.fineSightOriginPos, 0.1f);
+				yield return null;
+			}
+		}
+	}
+	private void CerateBullet()
+	{
+		//Instantiate(weapon.bullet,bulletPos.transform.position,transform.rotation);
+		GameObject t_object = ObjectPoolingManager.instance.GetQueue();
+		t_object.transform.position = bulletPos.transform.position;
+		t_object.transform.rotation = transform.rotation;
 	}
 }

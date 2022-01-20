@@ -31,6 +31,7 @@ public class PlayerCtrl : MonoBehaviour
 	private CapsuleCollider capsuleCollider;
 	public static PlayerCtrl instance = null;
 	[HideInInspector]public float x, y;
+	private MyWeaponCtrl myWeapon;
 
 	#region Singleton
 	private void Awake() //싱글톤
@@ -49,6 +50,7 @@ public class PlayerCtrl : MonoBehaviour
 		capsuleCollider = GetComponent<CapsuleCollider>();
 		rigidbody = GetComponent<Rigidbody>();
 		anim = GetComponent<PlayerAnim>();
+		myWeapon = GetComponentInChildren<MyWeaponCtrl>();
 		originPosY = camera.transform.localPosition.y;
 		applyCrouchPosY = originPosY;
 		anyspeed = walkspeed;
@@ -111,6 +113,7 @@ public class PlayerCtrl : MonoBehaviour
 	{
 		if (!isCrouch)
 		{
+			myWeapon.CancelFineSight();
 			isRun = true;
 			anyspeed = runspeed;
 		}
