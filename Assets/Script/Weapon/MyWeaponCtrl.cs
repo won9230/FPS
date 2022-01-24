@@ -111,7 +111,7 @@ public class MyWeaponCtrl : MonoBehaviour
 	
 	private void TryFineSight()
 	{
-		if (Input.GetMouseButtonDown(1) && !isReload)
+		if (!isReload && !PlayerCtrl.instance.isRun)
 		{
 			FineSight();
 		}
@@ -120,23 +120,27 @@ public class MyWeaponCtrl : MonoBehaviour
 	{
 		if (isFineSightMode)
 		{
-			FineSight();
+			isFineSightMode = false;
+			StopAllCoroutines();
+			StartCoroutine(FineSightDective());
 		}
 	}
 	private void FineSight()
 	{
-		isFineSightMode = !isFineSightMode;
-		anim.SetBool("FineSightMode", isFineSightMode);
-		if (isFineSightMode)
+		if (Input.GetMouseButton(1))
 		{
+			isFineSightMode = true;
 			StopAllCoroutines();
 			StartCoroutine(FineSightActive());
 		}
-		else
+		if(Input.GetMouseButtonUp(1))
 		{
+			Debug.Log("asd");
+			isFineSightMode = false;
 			StopAllCoroutines();
 			StartCoroutine(FineSightDective());
 		}
+		anim.SetBool("FineSightMode", isFineSightMode);
 	}
 	IEnumerator FineSightActive()
 	{

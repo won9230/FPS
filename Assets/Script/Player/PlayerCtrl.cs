@@ -15,6 +15,7 @@ public class PlayerCtrl : LivingEntity
 	[HideInInspector]public bool isRun = false; //달리기 감지
 	private bool isGround = true; // 바닥감지
 	[HideInInspector] public bool isCrouch = false; //앉기 감지
+	private bool isDie =false;
 
 	[SerializeField] private float cameraRotationLimit; //걸림
 	private float currentCameraRotationX = 0;
@@ -23,11 +24,11 @@ public class PlayerCtrl : LivingEntity
 	[SerializeField] private float crouchPosY;
 	private float originPosY;
 	private float applyCrouchPosY;
+	[SerializeField] private Vector3 deadPos;
 
 	[SerializeField] private new Camera camera;
 	//기타
 	private new Rigidbody rigidbody;
-	private PlayerAnim anim;
 	private CapsuleCollider capsuleCollider;
 	public static PlayerCtrl instance = null;
 	[HideInInspector]public float x, y;
@@ -49,7 +50,6 @@ public class PlayerCtrl : LivingEntity
 		Cursor.lockState = CursorLockMode.Locked;
 		capsuleCollider = GetComponent<CapsuleCollider>();
 		rigidbody = GetComponent<Rigidbody>();
-		anim = GetComponent<PlayerAnim>();
 		myWeapon = GetComponentInChildren<MyWeaponCtrl>();
 		originPosY = camera.transform.localPosition.y;
 		applyCrouchPosY = originPosY;
@@ -57,12 +57,16 @@ public class PlayerCtrl : LivingEntity
 	}
 	private void Update()
 	{
-		IsGround();
-		TryJump();
-		TryCrouch();
-		PlayerMove();
-		CharacterRotation();
-		CameraRotation();
+		if (!dead)
+		{
+			IsGround();
+			TryJump();
+			TryCrouch();
+			PlayerMove();
+			CharacterRotation();
+			CameraRotation();
+		}
+		PlayerDie();
 	}
 
 
@@ -178,5 +182,27 @@ public class PlayerCtrl : LivingEntity
 	private void IsGround()
 	{
 		isGround = Physics.Raycast(transform.position,Vector3.down,capsuleCollider.bounds.extents.y+0.1f);
+	}
+	private void PlayerDie()
+	{
+		if (hp <= 0)
+			dead = true;
+
+		if (dead)
+		{
+			StopAllCoroutines();
+			StartCoroutine(DeadCoroutine());
+		}
+	}
+	IEnumerator DeadCoroutine()
+	{
+		Debug.Log("시작");
+		Quaternion rot = new Quaternion(0, camera.transform.localRotation.y, camera.transform.localRotation.z, 0);
+		while (camera.transform.localPosition != deadPos)
+		{
+			camera.transform.localPosition = Vector3.Lerp(camera.transform.localPosition, deadPos, 0.2f);
+			yield return null;
+		}
+		camera.enabled = false;
 	}
 }

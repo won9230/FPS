@@ -6,7 +6,7 @@ public class LivingEntity : MonoBehaviour
 {
 	public float hp;
 	public float maxHp;
-	public bool dead;
+	public bool dead = false;
 
 	protected virtual void Start()
 	{
@@ -15,9 +15,5 @@ public class LivingEntity : MonoBehaviour
 	public void TakeHit(float damage)
 	{
 		hp -= damage;
-	}
-	public void Die()
-	{
-		dead = true;
 	}
 }
