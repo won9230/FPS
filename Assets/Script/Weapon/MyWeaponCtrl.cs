@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(ObjectPoolingManager))]
+[RequireComponent(typeof(MyWeaponMoveAnim))]
 public class MyWeaponCtrl : MonoBehaviour
 {
 	public MyWeapon weapon;
@@ -13,7 +14,6 @@ public class MyWeaponCtrl : MonoBehaviour
 	private bool isReload = false;
 	private bool isFineSightMode = false;
 	[SerializeField] private Vector3 originPos;
-	[SerializeField] private Vector3 fineSightOriginPos;
 	public GameObject bulletPos;
 
 
@@ -24,7 +24,7 @@ public class MyWeaponCtrl : MonoBehaviour
 	{
 		audioSource = GetComponentInParent<AudioSource>();
 		anim = GetComponent<Animator>();
-		originPos = transform.localPosition;
+		originPos = fineSightPos.transform.localPosition;
 	}
 	private void Update()
 	{
@@ -135,7 +135,6 @@ public class MyWeaponCtrl : MonoBehaviour
 		}
 		if(Input.GetMouseButtonUp(1))
 		{
-			Debug.Log("asd");
 			isFineSightMode = false;
 			StopAllCoroutines();
 			StartCoroutine(FineSightDective());
@@ -195,6 +194,8 @@ public class MyWeaponCtrl : MonoBehaviour
 	{
 		//Instantiate(weapon.bullet,bulletPos.transform.position,transform.rotation);
 		GameObject t_object = ObjectPoolingManager.instance.GetQueue();
+		if (t_object == null)
+			Debug.Log("없음");
 		t_object.transform.position = bulletPos.transform.position;
 		t_object.transform.rotation = transform.rotation;
 	}

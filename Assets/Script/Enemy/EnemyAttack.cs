@@ -13,7 +13,6 @@ public class EnemyAttack : MonoBehaviour
 	}
 	private void OnTriggerEnter(Collider other)
 	{
-		Debug.Log("asd");
 		if(other.CompareTag("Player"))
 		{
 			//Debug.Log("asd");
