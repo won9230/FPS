@@ -20,7 +20,7 @@ public class ObjectPoolingManager : MonoBehaviour
 		instance = this;
 		for (int i = 0; i < 30; i++)
 		{
-			GameObject t_object = Instantiate(myWeapon.weapon.bullet, Vector3.zero, Quaternion.identity);
+			GameObject t_object = Instantiate(myWeapon.currentWeapon.bullet, Vector3.zero, Quaternion.identity);
 			if (myWeapon.bulletPos == null)
 			{
 				Debug.Log("오브젝트가 없습니다");

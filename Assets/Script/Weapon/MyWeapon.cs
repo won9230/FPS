@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum WeaponType { SMG, SniperRiffle, Pistol, Shotgun, Melee, Grenade, RocketLauncher }
+public enum WeaponType { GUN, MELEE}
 
 [CreateAssetMenu(fileName = "MyWeapon", menuName = "MyWeapon Data", order = 0)]
 public class MyWeapon : ScriptableObject
 {
 	[Header("세팅")]
 
+	[Tooltip("무기 타입")]
+	public WeaponType weaponType;
 	[Tooltip("무기 이름")]
 	public string weaponName;
 	[Tooltip("공격력")]
@@ -31,18 +33,20 @@ public class MyWeapon : ScriptableObject
 	[Tooltip("현재 소유하고 있는 장탄 수")]
 	public int carryBulletCount;
 
-	[Tooltip("반동 세기")]
+	[Tooltip("총 앞뒤 반동 세기")]
 	public float retroActionForce;
-	[Tooltip("정조준시 반동")]
+	[Tooltip("총 앞뒤 정조준시 반동")]
 	public float retroActionFineSightForce;
+	[Tooltip("카메라 위아래 정조준시 반동")]
+	public float camActionForce;
+	[Tooltip("카메라 위아래 정조준시 반동")]
+	public float camActionFineSightForce;
 	[Tooltip("에임 위치")]
 	public Vector3 fineSightOriginPos;
 	[Tooltip("총알 프리펩")]
 	public GameObject bullet;
-	//[Tooltip("장전 딜레이")]
-	//public float gunReload;
 
-	//public Animator anim;
+
 	public AudioClip fire_Sound;
 
 }

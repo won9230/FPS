@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +14,7 @@ public class PlayerCtrl : LivingEntity
 	[HideInInspector]public bool isRun = false; //달리기 감지
 	private bool isGround = true; // 바닥감지
 	[HideInInspector] public bool isCrouch = false; //앉기 감지
-	private bool isDie =false;
+	//private bool isDie =false;
 
 	[SerializeField] private float cameraRotationLimit; //걸림
 	private float currentCameraRotationX = 0;
@@ -27,6 +26,7 @@ public class PlayerCtrl : LivingEntity
 	[SerializeField] private Vector3 deadPos;
 
 	[SerializeField] private new Camera camera;
+	[SerializeField] private GameObject trunCamera;
 	//기타
 	private new Rigidbody rigidbody;
 	private CapsuleCollider capsuleCollider;
@@ -46,6 +46,7 @@ public class PlayerCtrl : LivingEntity
 
 	protected override void Start()
 	{
+
 		Cursor.visible = false;
 		Cursor.lockState = CursorLockMode.Locked;
 		capsuleCollider = GetComponent<CapsuleCollider>();
@@ -204,5 +205,15 @@ public class PlayerCtrl : LivingEntity
 			yield return null;
 		}
 		camera.enabled = false;
+	}
+	public void CamUp()
+	{
+		currentCameraRotationX -= Random.Range(0f, myWeapon.currentWeapon.camActionForce);
+		currentCameraRotationY -= Random.Range(-myWeapon.currentWeapon.camActionForce-0.1f, myWeapon.currentWeapon.camActionForce-0.1f);
+	}
+	public void CamSightForce()
+	{
+		currentCameraRotationX -= Random.Range(0f, myWeapon.currentWeapon.camActionFineSightForce);
+		currentCameraRotationY -= Random.Range(-myWeapon.currentWeapon.camActionFineSightForce - 0.1f, myWeapon.currentWeapon.camActionFineSightForce - 0.1f);
 	}
 }
