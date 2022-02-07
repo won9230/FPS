@@ -2,30 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(ObjectPoolingManager))]
 [RequireComponent(typeof(MyWeaponMoveAnim))]
 public class MyWeaponCtrl : MonoBehaviour
 {
 	public MyWeapon currentWeapon; //들고있는 무기
-	public Transform currentObject; //들고있는 무기 오브젝트
+	//public Transform currentObject; //들고있는 무기 오브젝트
 	public GameObject fineSightPos; //조준 위치
 
 	private float currentFireRate; //연사속도
 	private bool isReload = false; //장전 중
-	private bool isFineSightMode = false; //조준 중
+	[HideInInspector] public bool isFineSightMode = false; //조준 중
 	private Vector3 originPos; //조준 전 원래 위치
-	public GameObject bulletPos; //총알 나가는 위치
+	//public GameObject bulletPos; //총알 나가는 위치
 
 	private AudioSource audioSource; //총 소리
 	private Animator anim; //애니
+	private MyWeaponMoveAnim myWeaponMoveAnim;
 
 	private void Start()
 	{
 		audioSource = GetComponentInParent<AudioSource>();
-		anim = GetComponent<Animator>();
+		anim = currentWeapon.GetComponent<Animator>();
+		myWeaponMoveAnim = GetComponent<MyWeaponMoveAnim>();
+		myWeaponMoveAnim.anim = anim;
 		originPos = fineSightPos.transform.localPosition;
-		//currentObject = GetComponent<Transform>();
-		MyWeaponManager.currentWeapon = GetComponent<Transform>();
 	}
 	private void Update()
 	{
@@ -117,6 +117,14 @@ public class MyWeaponCtrl : MonoBehaviour
 			FineSight();
 		}
 	}
+	public void CancelReload()
+	{
+		if (isReload)
+		{
+			isReload = false;
+			StopAllCoroutines();
+		}
+	}
 	public void CancelFineSight() //조준 캔슬
 	{
 		if (isFineSightMode)
@@ -193,12 +201,12 @@ public class MyWeaponCtrl : MonoBehaviour
 	}
 	private void CerateBullet() //총알 발사 생성
 	{
-		//Instantiate(weapon.bullet,bulletPos.transform.position,transform.rotation);
-		GameObject t_object = ObjectPoolingManager.instance.GetQueue();
-		if (t_object == null)
+		Instantiate(currentWeapon.bullet,currentWeapon.bulletPos.transform.position,transform.rotation);
+		//GameObject t_object = ObjectPoolingManager.instance.GetQueue();
+		//if (t_object == null)
 			Debug.Log("없음");
-		t_object.transform.position = bulletPos.transform.position;
-		t_object.transform.rotation = transform.rotation;
+		//t_object.transform.position = bulletPos.transform.position;
+		//t_object.transform.rotation = transform.rotation;
 	}
 	private void CamAction() //총 카메라 반동
 	{
@@ -207,16 +215,22 @@ public class MyWeaponCtrl : MonoBehaviour
 		else
 			PlayerCtrl.instance.CamSightForce();
 	}
-	public void WeaponChange(GameObject _myWeapon) //무기 변경
+	public void WeaponChange(MyWeapon _myWeapon) //무기 변경
 	{
-		if (MyWeaponManager.currentWeapon != null)
-			MyWeaponManager.currentWeapon.gameObject.SetActive(false);
+		if (!isReload)
+		{
+			CancelReload();
+			if (MyWeaponManager.currentWeapon != null)
+				MyWeaponManager.currentWeapon.gameObject.SetActive(false);
 
-		currentWeapon = _myWeapon.GetComponent<MyWeaponCtrl>().currentWeapon;
-		currentObject = _myWeapon.gameObject.transform;
-		MyWeaponManager.myWeaponCtrl = GetComponent<MyWeaponCtrl>();
-		MyWeaponManager.currentWeapon = currentObject.GetComponent<Transform>();
-
-		currentObject.gameObject.SetActive(true);
+			currentWeapon = _myWeapon;
+			anim = currentWeapon.anim;
+			myWeaponMoveAnim.anim = anim;
+			MyWeaponManager.currentWeapon = currentWeapon.GetComponent<Transform>();
+			fineSightPos.transform.localPosition = currentWeapon.gunPos;
+			originPos = currentWeapon.gunPos;
+			currentWeapon.gameObject.SetActive(true);
+			Debug.Log(anim);
+		}
 	}
 }

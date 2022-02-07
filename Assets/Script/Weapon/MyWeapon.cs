@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum WeaponType { GUN, MELEE}
-
-[CreateAssetMenu(fileName = "MyWeapon", menuName = "MyWeapon Data", order = 0)]
-public class MyWeapon : ScriptableObject
+public enum WeaponType { GUN,Melee}
+public class MyWeapon : MonoBehaviour
 {
 	[Header("세팅")]
 
@@ -43,10 +41,15 @@ public class MyWeapon : ScriptableObject
 	public float camActionFineSightForce;
 	[Tooltip("에임 위치")]
 	public Vector3 fineSightOriginPos;
+	[Tooltip("총 위치")]
+	public Vector3 gunPos;
 	[Tooltip("총알 프리펩")]
 	public GameObject bullet;
+	[Tooltip("총알 발사 위치")]
+	public Transform bulletPos;
 
+
+	public Animator anim;
 
 	public AudioClip fire_Sound;
-
 }

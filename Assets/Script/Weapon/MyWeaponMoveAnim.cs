@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class MyWeaponMoveAnim : MonoBehaviour
 {
-	private Animator anim;
+	private MyWeaponCtrl myWeaponCtrl;
+	public Animator anim;
 	float x = 0;
 	private void Start()
 	{
-		anim = GetComponent<Animator>();
+		myWeaponCtrl = GetComponent<MyWeaponCtrl>();
+		//anim = myWeaponCtrl.currentWeapon.GetComponent<Animator>();
 	}
 	private void Update()
 	{

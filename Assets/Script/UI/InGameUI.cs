@@ -6,13 +6,12 @@ using UnityEngine.UI;
 public class InGameUI : MonoBehaviour
 {
     public PlayerCtrl playerCtrl;
-	public MyWeapon myWeapon;
+	public MyWeaponManager myWeaponManager;
 	public Slider playerHp;
 	public Text[] texts;
 	private void Start()
 	{
 		playerHp.maxValue = playerCtrl.maxHp;
-		
 	}
 	private void Update()
 	{
@@ -25,7 +24,7 @@ public class InGameUI : MonoBehaviour
 	}
 	private void PlayerBullet()
 	{
-		texts[0].text = myWeapon.carryBulletCount.ToString();
-		texts[1].text = myWeapon.curentBulletCount.ToString();
+		texts[0].text = MyWeaponManager.instance.myWeaponCtrl.currentWeapon.carryBulletCount.ToString();
+		texts[1].text = MyWeaponManager.instance.myWeaponCtrl.currentWeapon.curentBulletCount.ToString();
 	}
 }

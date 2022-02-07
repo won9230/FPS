@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class ObjectPoolingManager : MonoBehaviour
 {
-	public static ObjectPoolingManager instance;
+	//public static ObjectPoolingManager instance;
 
 	//public GameObject OPprefab = null;
-	private MyWeaponCtrl myWeapon;
+	private MyWeapon myWeapon;
 
 	public Queue<GameObject> m_queue = new Queue<GameObject>();
 
 	private void Awake()
 	{
-		myWeapon = GetComponent<MyWeaponCtrl>();
+		myWeapon = GetComponent<MyWeapon>();
 	}
 	private void Start()
 	{
-		instance = this;
+		//instance = this;
 		for (int i = 0; i < 30; i++)
 		{
-			GameObject t_object = Instantiate(myWeapon.currentWeapon.bullet, Vector3.zero, Quaternion.identity);
+			GameObject t_object = Instantiate(myWeapon.bullet, Vector3.zero, Quaternion.identity);
 			if (myWeapon.bulletPos == null)
 			{
 				Debug.Log("오브젝트가 없습니다");
