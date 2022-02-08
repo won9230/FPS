@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +14,8 @@ public class MyWeaponCtrl : MonoBehaviour
 	private bool isReload = false; //장전 중
 	[HideInInspector] public bool isFineSightMode = false; //조준 중
 	private Vector3 originPos; //조준 전 원래 위치
-	//public GameObject bulletPos; //총알 나가는 위치
+	private Quaternion originRot; //조준 전 원래 위치
+	public GameObject camPos; //총알 나가는 위치
 
 	private AudioSource audioSource; //총 소리
 	private Animator anim; //애니
@@ -26,13 +28,21 @@ public class MyWeaponCtrl : MonoBehaviour
 		myWeaponMoveAnim = GetComponent<MyWeaponMoveAnim>();
 		myWeaponMoveAnim.anim = anim;
 		originPos = fineSightPos.transform.localPosition;
+		originRot = camPos.transform.localRotation;
 	}
 	private void Update()
 	{
-		GunFireRateCalc();
-		TryFire();
-		Reload();
-		TryFineSight();
+		if (currentWeapon.weaponType == WeaponType.GUN)
+		{
+			GunFireRateCalc();
+			TryFire();
+			Reload();
+			TryFineSight();
+		}
+		if(currentWeapon.weaponType == WeaponType.Melee)
+		{
+			MeeleAttack();
+		}
 	}
 	private void GunFireRateCalc() //연사 속도 계산
 	{
@@ -65,6 +75,7 @@ public class MyWeaponCtrl : MonoBehaviour
 		CerateBullet(); //총알생성
 		anim.SetTrigger("Shoot"); //애니
 		StartCoroutine(RetroAction()); //총 앞뒤 반동
+		StartCoroutine(CamAction2());
 		PlaySE(currentWeapon.fire_Sound); //총 소리
 		CamAction(); //카메라 에임 조종
 	}
@@ -139,7 +150,7 @@ public class MyWeaponCtrl : MonoBehaviour
 		if (Input.GetMouseButton(1))
 		{
 			isFineSightMode = true;
-			StopAllCoroutines();
+			//StopAllCoroutines();
 			StartCoroutine(FineSightActive());
 		}
 		if(Input.GetMouseButtonUp(1))
@@ -199,12 +210,51 @@ public class MyWeaponCtrl : MonoBehaviour
 			}
 		}
 	}
+	IEnumerator CamAction2()
+	{
+		Quaternion recoilBack = new Quaternion(currentWeapon.camUpActionForce, originRot.y, originRot.z,0f);
+		Quaternion retroActionRecoil = new Quaternion(currentWeapon.camUpActionFineSightForce, originRot.y, originRot.z,0f);
+		if (!isFineSightMode)
+		{
+			camPos.transform.localRotation = originRot;
+			while (camPos.transform.localRotation.x >= currentWeapon.camUpActionForce) //반동
+			{
+				camPos.transform.localRotation = Quaternion.Slerp(camPos.transform.localRotation, recoilBack,Time.deltaTime * 10f);
+				yield return null;
+			}
+			while (camPos.transform.localRotation != originRot) //원위치
+			{
+				camPos.transform.localRotation = Quaternion.Slerp(camPos.transform.localRotation, originRot, Time.deltaTime * 10f);
+				yield return null;
+			}
+			camPos.transform.localRotation = originRot;
+		}
+		else
+		{
+			camPos.transform.localRotation = originRot;
+			while (camPos.transform.localRotation.x >= currentWeapon.camUpActionForce) //반동
+			{
+				//camPos.transform.localRotation = Quaternion.Slerp(camPos.transform.localRotation, retroActionRecoil, Time.deltaTime * 10f);
+				camPos.transform.localRotation = Quaternion.Slerp(camPos.transform.localRotation, recoilBack, Time.deltaTime * 10f);
+				Debug.Log("asdasd");
+				yield return null;
+			}
+			while (camPos.transform.localRotation != originRot) //원위치
+			{
+				camPos.transform.localRotation = Quaternion.Slerp(camPos.transform.localRotation, originRot, Time.deltaTime * 10f);
+				Debug.Log("2");
+				yield return null;
+			}
+			Debug.Log("3");
+			camPos.transform.localRotation = originRot;
+		}
+	}
 	private void CerateBullet() //총알 발사 생성
 	{
 		Instantiate(currentWeapon.bullet,currentWeapon.bulletPos.transform.position,transform.rotation);
 		//GameObject t_object = ObjectPoolingManager.instance.GetQueue();
 		//if (t_object == null)
-			Debug.Log("없음");
+			//Debug.Log("없음");
 		//t_object.transform.position = bulletPos.transform.position;
 		//t_object.transform.rotation = transform.rotation;
 	}
@@ -215,6 +265,23 @@ public class MyWeaponCtrl : MonoBehaviour
 		else
 			PlayerCtrl.instance.CamSightForce();
 	}
+
+
+//======================================근접구현=============================
+
+	public void MeeleAttack()
+	{
+		if (Input.GetMouseButtonDown(0))
+		{
+			TryMeeleAttack();
+		}
+	}
+
+	private void TryMeeleAttack()
+	{
+		anim.SetTrigger("Shoot");
+	}
+
 	public void WeaponChange(MyWeapon _myWeapon) //무기 변경
 	{
 		if (!isReload)
@@ -230,7 +297,6 @@ public class MyWeaponCtrl : MonoBehaviour
 			fineSightPos.transform.localPosition = currentWeapon.gunPos;
 			originPos = currentWeapon.gunPos;
 			currentWeapon.gameObject.SetActive(true);
-			Debug.Log(anim);
 		}
 	}
 }

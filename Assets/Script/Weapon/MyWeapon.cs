@@ -39,6 +39,10 @@ public class MyWeapon : MonoBehaviour
 	public float camActionForce;
 	[Tooltip("카메라 위아래 정조준시 반동")]
 	public float camActionFineSightForce;
+	[Tooltip("카메라 위아래 정조준시 반동")]
+	public float camUpActionForce;
+	[Tooltip("카메라 위아래 정조준시 반동")]
+	public float camUpActionFineSightForce;
 	[Tooltip("에임 위치")]
 	public Vector3 fineSightOriginPos;
 	[Tooltip("총 위치")]

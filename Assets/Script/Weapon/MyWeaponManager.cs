@@ -34,7 +34,7 @@ public class MyWeaponManager : MonoBehaviour
 		{
 			myWeaponTable.Add(myWeapons[i].weaponName,myWeapons[i]);
 		}
-		currentWeapon = myWeapons[0].gameObject.transform;
+		currentWeapon = myWeapons[2].gameObject.transform;
 	}
 	private void Update()
 	{
@@ -47,17 +47,20 @@ public class MyWeaponManager : MonoBehaviour
 			else if(Input.GetKeyDown(KeyCode.Alpha2))
 			{
 				StartCoroutine(ChangeWeapon("GUN", "Glock"));
+			}	
+			else if(Input.GetKeyDown(KeyCode.Alpha3))
+			{
+			StartCoroutine(ChangeWeapon("Melee", "Knife"));
 			}
 		}
 	}
 	public IEnumerator ChangeWeapon(string _type,string _name)
 	{
-		isChangeWeapon = true;
-		yield return new WaitForSeconds(0.1f);
 		CancelWeaponAciton();
 		WeaponChange(_type,_name);
-		yield return new WaitForSeconds(0.1f);
+		isChangeWeapon = true;
 		currentWeaponType = _type;
+		yield return new WaitForSeconds(1.5f);
 		isChangeWeapon = false;
 	}
 	private void CancelWeaponAciton()
@@ -71,9 +74,10 @@ public class MyWeaponManager : MonoBehaviour
 	}
 	private void WeaponChange(string _type, string _name)
 	{
-		if(_type == "GUN")
+		if(_type == "GUN" || _type == "Melee")
 		{
-			myWeaponCtrl.WeaponChange(myWeaponTable[_name]);
+			if(!isChangeWeapon)
+				myWeaponCtrl.WeaponChange(myWeaponTable[_name]);
 		}
 	}
 }

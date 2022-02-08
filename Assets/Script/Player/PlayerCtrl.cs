@@ -69,9 +69,6 @@ public class PlayerCtrl : LivingEntity
 		}
 		PlayerDie();
 	}
-
-
-
 	private void CharacterRotation() //좌우 회전
 	{
 		float yRotation = Input.GetAxisRaw("Mouse X");
@@ -114,7 +111,7 @@ public class PlayerCtrl : LivingEntity
 		Vector3 velocity = (moveX + moveY).normalized * anyspeed;
 		rigidbody.MovePosition(transform.position + velocity * Time.deltaTime);
 	}
-	private void Running()
+	private void Running() //달리기
 	{
 		if (!isCrouch)
 		{
@@ -123,7 +120,7 @@ public class PlayerCtrl : LivingEntity
 			anyspeed = runspeed;
 		}
 	}
-	private void RunningStop()
+	private void RunningStop() //달리기 멈추기
 	{
 		if (!isCrouch)
 		{
@@ -147,7 +144,7 @@ public class PlayerCtrl : LivingEntity
 			
 		rigidbody.velocity = transform.up * jumpForce;
 	}
-	private void TryCrouch()
+	private void TryCrouch() //앉기
 	{
 		if (Input.GetKey(KeyCode.LeftControl))
 		{
@@ -180,11 +177,11 @@ public class PlayerCtrl : LivingEntity
 		}
 		camera.transform.localPosition = new Vector3(0, applyCrouchPosY, 0);
 	}
-	private void IsGround()
+	private void IsGround() //바닥 체크
 	{
 		isGround = Physics.Raycast(transform.position,Vector3.down,capsuleCollider.bounds.extents.y+0.1f);
 	}
-	private void PlayerDie()
+	private void PlayerDie() //죽는거
 	{
 		if (hp <= 0)
 			dead = true;
