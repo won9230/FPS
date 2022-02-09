@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IStateBossPatrol : IState<BossCtrl>
+public class IStateBossAttack : IState<BossCtrl>
 {
 	public void OnEnter(BossCtrl qstate)
 	{
-		
+		qstate.StartCoroutine(qstate.BossAttackCorutine());
 	}
 
 	public void OnExit(BossCtrl qstate)
@@ -16,7 +16,6 @@ public class IStateBossPatrol : IState<BossCtrl>
 
 	public void OnUpdate(BossCtrl qstate)
 	{
-		
-		qstate.ChackTrace();
+
 	}
 }

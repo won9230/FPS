@@ -150,7 +150,7 @@ public class MyWeaponCtrl : MonoBehaviour
 		if (Input.GetMouseButton(1))
 		{
 			isFineSightMode = true;
-			//StopAllCoroutines();
+			StopAllCoroutines();
 			StartCoroutine(FineSightActive());
 		}
 		if(Input.GetMouseButtonUp(1))
@@ -165,7 +165,7 @@ public class MyWeaponCtrl : MonoBehaviour
 	{
 		while (fineSightPos.transform.localPosition != currentWeapon.fineSightOriginPos)
 		{
-			fineSightPos.transform.localPosition = Vector3.Lerp(fineSightPos.transform.localPosition, currentWeapon.fineSightOriginPos, 0.2f);
+			fineSightPos.transform.localPosition = Vector3.Lerp(fineSightPos.transform.localPosition, currentWeapon.fineSightOriginPos, Time.deltaTime * 10f);
 			yield return null;
 		}
 	}
@@ -173,7 +173,7 @@ public class MyWeaponCtrl : MonoBehaviour
 	{
 		while (fineSightPos.transform.localPosition != originPos)
 		{
-			fineSightPos.transform.localPosition = Vector3.Lerp(fineSightPos.transform.localPosition, originPos, 0.2f);
+			fineSightPos.transform.localPosition = Vector3.Lerp(fineSightPos.transform.localPosition, originPos, Time.deltaTime * 10f);
 			yield return null;
 		}
 	}
@@ -234,18 +234,15 @@ public class MyWeaponCtrl : MonoBehaviour
 			camPos.transform.localRotation = originRot;
 			while (camPos.transform.localRotation.x >= currentWeapon.camUpActionForce) //반동
 			{
-				//camPos.transform.localRotation = Quaternion.Slerp(camPos.transform.localRotation, retroActionRecoil, Time.deltaTime * 10f);
-				camPos.transform.localRotation = Quaternion.Slerp(camPos.transform.localRotation, recoilBack, Time.deltaTime * 10f);
-				Debug.Log("asdasd");
+				camPos.transform.localRotation = Quaternion.Slerp(camPos.transform.localRotation, retroActionRecoil, Time.deltaTime * 10f);
+				//Debug.Log("asdasd");
 				yield return null;
 			}
 			while (camPos.transform.localRotation != originRot) //원위치
 			{
 				camPos.transform.localRotation = Quaternion.Slerp(camPos.transform.localRotation, originRot, Time.deltaTime * 10f);
-				Debug.Log("2");
 				yield return null;
 			}
-			Debug.Log("3");
 			camPos.transform.localRotation = originRot;
 		}
 	}

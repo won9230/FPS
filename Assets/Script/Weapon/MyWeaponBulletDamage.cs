@@ -23,6 +23,13 @@ public class MyWeaponBulletDamage : MonoBehaviour
 		if(other.CompareTag("Enemy"))
 		{
 			other.GetComponent<EnemyCtrl>().TakeHit(myWeaponCtrl.currentWeapon.damage);
+			Destroy(gameObject);
+			Debug.Log(myWeaponCtrl.currentWeapon.damage);
+		}	
+		if(other.CompareTag("Boss"))
+		{
+			other.GetComponent<BossCtrl>().TakeHit(myWeaponCtrl.currentWeapon.damage);
+			Destroy(gameObject);
 			Debug.Log(myWeaponCtrl.currentWeapon.damage);
 		}
 	}

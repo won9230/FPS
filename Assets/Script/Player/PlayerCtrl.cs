@@ -46,7 +46,6 @@ public class PlayerCtrl : LivingEntity
 
 	protected override void Start()
 	{
-
 		Cursor.visible = false;
 		Cursor.lockState = CursorLockMode.Locked;
 		capsuleCollider = GetComponent<CapsuleCollider>();
