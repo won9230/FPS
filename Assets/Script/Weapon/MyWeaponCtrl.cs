@@ -24,7 +24,7 @@ public class MyWeaponCtrl : MonoBehaviour
 	private void Start()
 	{
 		audioSource = GetComponentInParent<AudioSource>();
-		anim = currentWeapon.GetComponent<Animator>();
+		//anim = currentWeapon.GetComponent<Animator>();
 		myWeaponMoveAnim = GetComponent<MyWeaponMoveAnim>();
 		myWeaponMoveAnim.anim = anim;
 		originPos = fineSightPos.transform.localPosition;
@@ -32,16 +32,19 @@ public class MyWeaponCtrl : MonoBehaviour
 	}
 	private void Update()
 	{
-		if (currentWeapon.weaponType == WeaponType.GUN)
+		if (currentWeapon != null)
 		{
-			GunFireRateCalc();
-			TryFire();
-			Reload();
-			TryFineSight();
-		}
-		if(currentWeapon.weaponType == WeaponType.Melee)
-		{
-			MeeleAttack();
+			if (currentWeapon.weaponType == WeaponType.GUN)
+			{
+				GunFireRateCalc();
+				TryFire();
+				Reload();
+				TryFineSight();
+			}
+			if (currentWeapon.weaponType == WeaponType.Melee)
+			{
+				MeeleAttack();
+			}
 		}
 	}
 	private void GunFireRateCalc() //연사 속도 계산

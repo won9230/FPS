@@ -17,10 +17,12 @@ public class MyWeaponManager : MonoBehaviour
 
 	[SerializeField] private string currentWeaponType;  // 현재 총 타입
 
+	private MyInventory myInventory;
 	public MyWeaponCtrl myWeaponCtrl;
 	public static Transform currentWeapon;//총
 	public static Animator anim;
 
+	#region 싱글톤
 	private void Awake()
 	{
 		if (instance == null)
@@ -28,13 +30,16 @@ public class MyWeaponManager : MonoBehaviour
 		else if (instance != this)
 			Destroy(this.gameObject);
 	}
+	#endregion
+
 	private void Start()
 	{
+		myInventory = GetComponent<MyInventory>();
 		for (int i = 0; i < myWeapons.Length; i++)
 		{
 			myWeaponTable.Add(myWeapons[i].weaponName,myWeapons[i]);
 		}
-		currentWeapon = myWeapons[2].gameObject.transform;
+		//currentWeapon = myWeapons[2].gameObject.transform;
 	}
 	private void Update()
 	{
@@ -42,26 +47,34 @@ public class MyWeaponManager : MonoBehaviour
 		{
 			if (Input.GetKeyDown(KeyCode.Alpha1))
 			{
-				StartCoroutine(ChangeWeapon("GUN", "AK47"));
+				StartCoroutine(ChangeWeapon(myInventory.mainSlots[0].weaponType, myInventory.mainSlots[0].weaponName));
 			}
 			else if(Input.GetKeyDown(KeyCode.Alpha2))
 			{
-				StartCoroutine(ChangeWeapon("GUN", "Glock"));
+				StartCoroutine(ChangeWeapon(myInventory.mainSlots[1].weaponType, myInventory.mainSlots[1].weaponName));
 			}	
 			else if(Input.GetKeyDown(KeyCode.Alpha3))
 			{
-			StartCoroutine(ChangeWeapon("Melee", "Knife"));
+				StartCoroutine(ChangeWeapon(myInventory.subSlot.weaponType,myInventory.subSlot.weaponName));
+			}	
+			else if(Input.GetKeyDown(KeyCode.Alpha4))
+			{
+				StartCoroutine(ChangeWeapon(myInventory.meeleSlot.weaponType, myInventory.meeleSlot.weaponName));
 			}
 		}
 	}
-	public IEnumerator ChangeWeapon(string _type,string _name)
+	public IEnumerator ChangeWeapon(string _type, string _name)
 	{
-		CancelWeaponAciton();
-		WeaponChange(_type,_name);
-		isChangeWeapon = true;
-		currentWeaponType = _type;
-		yield return new WaitForSeconds(1.5f);
-		isChangeWeapon = false;
+		if (_type != "" && _name != "")
+		{
+			CancelWeaponAciton();
+			WeaponChange(_type, _name);
+			isChangeWeapon = true;
+			currentWeaponType = _type;
+			yield return new WaitForSeconds(1.5f);
+			isChangeWeapon = false;
+		}
+		yield return null;
 	}
 	private void CancelWeaponAciton()
 	{

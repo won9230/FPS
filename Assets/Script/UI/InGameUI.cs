@@ -24,7 +24,10 @@ public class InGameUI : MonoBehaviour
 	}
 	private void PlayerBullet()
 	{
-		texts[0].text = MyWeaponManager.instance.myWeaponCtrl.currentWeapon.carryBulletCount.ToString();
-		texts[1].text = MyWeaponManager.instance.myWeaponCtrl.currentWeapon.curentBulletCount.ToString();
+		if (MyWeaponManager.instance.myWeaponCtrl.currentWeapon != null)
+		{
+			texts[0].text = MyWeaponManager.instance.myWeaponCtrl.currentWeapon.carryBulletCount.ToString();
+			texts[1].text = MyWeaponManager.instance.myWeaponCtrl.currentWeapon.curentBulletCount.ToString();
+		}
 	}
 }

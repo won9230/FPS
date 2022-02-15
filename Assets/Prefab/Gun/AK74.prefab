@@ -54,6 +54,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -65,6 +66,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -131,6 +133,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -142,6 +145,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -165,10 +169,8 @@ GameObject:
   - component: {fileID: 8743027717477326668}
   - component: {fileID: 1720228424782836278}
   - component: {fileID: 4336911106681926746}
-  - component: {fileID: 8320935969309336941}
-  - component: {fileID: 1996167039560501234}
   m_Layer: 0
-  m_Name: AK74M
+  m_Name: AK74
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -223,55 +225,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.094566844, y: 0.31472215, z: 2.124615}
   m_Center: {x: 0, y: 0.40689033, z: 0}
---- !u!54 &8320935969309336941
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5696526562413227359}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 2
---- !u!114 &1996167039560501234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5696526562413227359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74e43e64173f3604fb4e9e6ed9f23fd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 0
-  title: AK74M
-  description: 
-  type: Rifle
-  icon: {fileID: 21300000, guid: 1a63df171baa6d34c85134cffd69e41c, type: 3}
-  width: 5
-  height: 2
-  stackable: 0
-  maxStackSize: 30
-  stackSize: 30
-  weaponMagazine: {fileID: 0}
-  onUseEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: DTInventory.Item+OnUseEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  onPickupEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: DTInventory.Item+OnPickupEvent, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &6963510590113163409
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,6 +279,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -337,6 +291,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum WeaponType { GUN,Melee}
+public enum WeaponType { GUN,Sub,Melee}
 public class MyWeapon : MonoBehaviour
 {
 	[Header("세팅")]

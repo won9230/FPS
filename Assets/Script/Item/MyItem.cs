@@ -7,15 +7,9 @@ public class MyItem : ScriptableObject
 {
 	public string itemName;
 	public Sprite itemImapge;
-	public GameObject itemPrefab;
-	public GameObject itemObject;
+	public MyWeapon weapon;
+	//public GameObject itemPrefab;
+	//public GameObject itemObject;
 
-	public string weponType;
-
-	public enum ItemType
-	{
-		meleeweapon,
-		gunweapon,
-		bullet,
-	}
+	//public string weponType;
 }

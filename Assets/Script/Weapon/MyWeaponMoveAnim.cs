@@ -14,7 +14,10 @@ public class MyWeaponMoveAnim : MonoBehaviour
 	}
 	private void Update()
 	{
-		AnimRun();
+		if (myWeaponCtrl.currentWeapon != null)
+		{
+			AnimRun();
+		}
 	}
 	private void AnimMove()
 	{
