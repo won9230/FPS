@@ -30,6 +30,7 @@ public class PlayerCtrl : LivingEntity
 	//기타
 	private new Rigidbody rigidbody;
 	private CapsuleCollider capsuleCollider;
+	private RaycastHit hit;
 	public static PlayerCtrl instance = null;
 	[HideInInspector]public float x, y;
 	private MyWeaponCtrl myWeapon;
@@ -65,8 +66,24 @@ public class PlayerCtrl : LivingEntity
 			PlayerMove();
 			CharacterRotation();
 			CameraRotation();
+			PlayerRaycast();
 		}
 		PlayerDie();
+	}
+	private void PlayerRaycast()
+	{
+		if(Physics.Raycast(camera.transform.position,camera.transform.forward,out hit, 1000))
+		{
+			Debug.Log(hit.collider.tag);
+			if (hit.collider.CompareTag("Item"))
+			{
+				if (Input.GetKeyDown(KeyCode.E))
+				{
+					hit.collider.GetComponent<MyItemDrop>().Drop();
+				}
+			}
+			Debug.DrawRay(camera.transform.position, camera.transform.forward * hit.distance, Color.red);
+		}
 	}
 	private void CharacterRotation() //좌우 회전
 	{

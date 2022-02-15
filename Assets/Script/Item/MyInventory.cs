@@ -23,29 +23,29 @@ public class MyInventory : MonoBehaviour
 	{
 		FreshSlot(null);
 	}
+
 	public void FreshSlot(MyWeapon _item)
 	{
 		if (_item == null)
 			return;
 		int i = 0;
-		if (_item.weaponType == WeaponType.GUN)
+		for (; i < items.Count; i++)
 		{
-			for (; i < items.Count && i < mainSlots.Length; i++)
+			for (int j = 0; j < mainSlots.Length; j++)
 			{
-				mainSlots[i].item = items[i];
+				if (_item.weaponType == WeaponType.GUN)
+				{
+					mainSlots[j].item = items[i];
+				}
 			}
-			for (; i < mainSlots.Length; i++)
+			if (_item.weaponType == WeaponType.Sub)
 			{
-				mainSlots[i].item = null;
+				subSlot.item = items[i];
 			}
-		}
-		if (_item.weaponType == WeaponType.Sub)
-		{
-			subSlot.item = items[i];
-		}
-		if (_item.weaponType == WeaponType.Melee)
-		{
-			meeleSlot.item = items[i];
+			if (_item.weaponType == WeaponType.Melee)
+			{
+				meeleSlot.item = items[i];
+			}
 		}
 	}
 	public void AddItem(MyItem _item)

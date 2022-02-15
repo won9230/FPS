@@ -167,8 +167,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8743027717477326668}
-  - component: {fileID: 1720228424782836278}
   - component: {fileID: 4336911106681926746}
+  - component: {fileID: 1938454335}
+  - component: {fileID: 1938454336}
   m_Layer: 0
   m_Name: AK74
   m_TagString: Item
@@ -185,7 +186,7 @@ Transform:
   m_GameObject: {fileID: 5696526562413227359}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.70710677}
   m_LocalPosition: {x: 621.01, y: 17.740053, z: 485.884}
-  m_LocalScale: {x: 0.3836, y: 0.3836, z: 0.3836}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6731754993662066006}
   - {fileID: 2802299581854920837}
@@ -193,25 +194,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.00001}
---- !u!95 &1720228424782836278
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5696526562413227359}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 2fb2b8f786db2d24eb7f44a518b7820a, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!65 &4336911106681926746
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -225,6 +207,35 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.094566844, y: 0.31472215, z: 2.124615}
   m_Center: {x: 0, y: 0.40689033, z: 0}
+--- !u!54 &1938454335
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5696526562413227359}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 122
+  m_CollisionDetection: 0
+--- !u!114 &1938454336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5696526562413227359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4500bcf0cf9670242aed56a530eca567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 6d0c3fce51e0d944ba157e0f525d5fa9, type: 2}
 --- !u!1 &6963510590113163409
 GameObject:
   m_ObjectHideFlags: 0

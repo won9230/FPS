@@ -54,6 +54,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -65,6 +66,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -579,13 +581,14 @@ GameObject:
   m_Component:
   - component: {fileID: 8567404113779528896}
   - component: {fileID: 8567404113788828416}
+  - component: {fileID: 1978678853}
   m_Layer: 0
   m_Name: Knife
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8567404113779528896
 Transform:
   m_ObjectHideFlags: 0
@@ -593,7 +596,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8567404113779427488}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.082, y: -0.17699999, z: 0.35700035}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -621,6 +624,41 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1978678853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8567404113779427488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4db224ceb23ce2f40a1b457fe14f7a08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponType: 2
+  weaponName: Knife
+  damage: 5
+  attackDelay: 3.5
+  accuracy: 0
+  fireRate: 0
+  reloadTime: 0
+  reloadBulletCount: 0
+  curentBulletCount: 0
+  maxBulletCount: 0
+  carryBulletCount: 0
+  retroActionForce: 0
+  retroActionFineSightForce: 0
+  camActionForce: 0
+  camActionFineSightForce: 0
+  camUpActionForce: 0
+  camUpActionFineSightForce: 0
+  fineSightOriginPos: {x: 0, y: 0, z: 0}
+  gunPos: {x: -0.216, y: 0.068, z: -0.306}
+  bullet: {fileID: 0}
+  bulletPos: {fileID: 0}
+  anim: {fileID: 8567404113788828416}
+  fire_Sound: {fileID: 8300000, guid: 741799d92dcc8494ebb73f144e65bc71, type: 3}
 --- !u!1 &8567404113779427490
 GameObject:
   m_ObjectHideFlags: 0
@@ -1603,6 +1641,7 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1614,6 +1653,7 @@ SkinnedMeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0

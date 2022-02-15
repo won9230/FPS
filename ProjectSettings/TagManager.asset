@@ -18,6 +18,10 @@ TagManager:
   - Terrain
   - Collision
   - LootBox
+  - NightLights
+  - Emission
+  - Enemy
+  - Boss
   layers:
   - Default
   - TransparentFX

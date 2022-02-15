@@ -7,13 +7,10 @@ public class MyItemDrop : MonoBehaviour
 	public MyItem item;
 	private MyInventory myInventory;
 
-	private void OnTriggerEnter(Collider other)
+	public void Drop()
 	{
-		if (other.CompareTag("Player"))
-		{
-			myInventory = FindObjectOfType<MyInventory>();
-			myInventory.AddItem(item);
-			Destroy(gameObject);
-		}
+		myInventory = FindObjectOfType<MyInventory>();
+		myInventory.AddItem(item);
+		Destroy(gameObject);
 	}
 }
