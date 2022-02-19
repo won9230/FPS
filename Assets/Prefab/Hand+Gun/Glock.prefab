@@ -1832,7 +1832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4db224ceb23ce2f40a1b457fe14f7a08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponType: 0
+  weaponType: 1
   weaponName: Glock
   damage: 5
   attackDelay: 0.1

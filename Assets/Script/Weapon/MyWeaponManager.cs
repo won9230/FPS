@@ -59,7 +59,7 @@ public class MyWeaponManager : MonoBehaviour
 			}	
 			else if(Input.GetKeyDown(KeyCode.Alpha4))
 			{
-				StartCoroutine(ChangeWeapon(myInventory.meeleSlot.weaponType, myInventory.meeleSlot.weaponName));
+			StartCoroutine(ChangeWeapon(myInventory.meeleSlot.weaponType, myInventory.meeleSlot.weaponName));
 			}
 		}
 	}

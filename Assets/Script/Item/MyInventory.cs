@@ -28,25 +28,62 @@ public class MyInventory : MonoBehaviour
 	{
 		if (_item == null)
 			return;
-		int i = 0;
+		int i = items.Count - 1;
+		//if (_item.weaponType == WeaponType.GUN)
+		//{
+		//	for (; i < items.Count && i < mainSlots.Length; i++)
+		//	{
+		//		mainSlots[i].item = items[i];
+		//		Debug.Log("main" + mainSlots[i].item.itemName + " " + _item.weaponType);
+		//	}
+		//	for (; i < mainSlots.Length; i++)
+		//	{
+		//		mainSlots[i].item = null;
+		//	}
+		//}
+		//if (_item.weaponType == WeaponType.Sub)
+		//{
+		//	for (; i < items.Count; i++)
+		//	{
+		//		subSlot.item = items[i];
+		//		Debug.Log("sub"+subSlot.item.itemName+" "+_item.weaponType);
+		//	}
+		//}
+		//if (_item.weaponType == WeaponType.Melee)
+		//{
+		//	for (; i < items.Count; i++)
+		//	{
+		//		meeleSlot.item = items[i];
+		//		Debug.Log("meele" + meeleSlot.item.itemName + " " + _item.weaponType);
+		//	}
+		//}
+		///==========================================
 		for (; i < items.Count; i++)
 		{
 			for (int j = 0; j < mainSlots.Length; j++)
 			{
-				if (_item.weaponType == WeaponType.GUN)
+				if (mainSlots[j].item == null && items[i].weapon.weaponType == WeaponType.GUN)
 				{
 					mainSlots[j].item = items[i];
+					Debug.Log("main" + mainSlots[j].item.itemName + " " + _item.weaponType);
 				}
 			}
-			if (_item.weaponType == WeaponType.Sub)
+			if(items[i].weapon.weaponType == WeaponType.Sub && subSlot.item == null)
 			{
 				subSlot.item = items[i];
+				Debug.Log("sub" + subSlot.item.itemName + " " + _item.weaponType);
 			}
-			if (_item.weaponType == WeaponType.Melee)
+			if(items[i].weapon.weaponType == WeaponType.Melee && meeleSlot.item == null)
 			{
 				meeleSlot.item = items[i];
+				Debug.Log("meele" + meeleSlot.item.itemName + " " + _item.weaponType);
 			}
 		}
+		for (; i < mainSlots.Length; i++)
+		{
+			mainSlots[i].item = null;
+		}
+
 	}
 	public void AddItem(MyItem _item)
 	{

@@ -74,7 +74,6 @@ public class PlayerCtrl : LivingEntity
 	{
 		if(Physics.Raycast(camera.transform.position,camera.transform.forward,out hit, 1000))
 		{
-			Debug.Log(hit.collider.tag);
 			if (hit.collider.CompareTag("Item"))
 			{
 				if (Input.GetKeyDown(KeyCode.E))
