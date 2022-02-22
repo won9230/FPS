@@ -9,6 +9,7 @@ public class MyWeaponCtrl : MonoBehaviour
 	public MyWeapon currentWeapon; //플레이거가 들고있는 무기
 	//public Transform currentObject; //들고있는 무기 오브젝트
 	public GameObject fineSightPos; //조준 위치
+	[SerializeField] private Transform playerItemSpawn; //총을 버릴 위치
 
 	private float currentFireRate; //연사속도
 	private bool isReload = false; //장전 중
@@ -301,11 +302,12 @@ public class MyWeaponCtrl : MonoBehaviour
 	}
 	public void WeaponAway()
 	{
-		if (!isReload)
+		if (!isReload && currentWeapon != null)
 		{
 			CancelReload();
 			MyWeaponManager.currentWeapon.gameObject.SetActive(false);
-			Instantiate(currentWeapon.GetComponent<MyWeapon>().weaponItemPrefab);
+			Instantiate(currentWeapon.GetComponent<MyWeapon>().weaponItemPrefab,playerItemSpawn.position,Quaternion.identity);
+			currentWeapon = null;
 		}
 	}
 }

@@ -109,8 +109,10 @@ public class MyWeaponManager : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.G))
 		{
+			//MyWeaponManager.currentWeapon == null;
 			myWeaponCtrl.WeaponAway();
 			myInventory.DestroyItem();
+
 		}
 	}
 }

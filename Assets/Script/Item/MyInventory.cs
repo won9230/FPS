@@ -78,7 +78,7 @@ public class MyInventory : MonoBehaviour
 	}
 	private void DestroySlotItem()
 	{
-		if (MyWeaponManager.currentWeapon.gameObject == null)
+		if (MyWeaponManager.currentWeapon == null)
 			return;
 		string weaponName = MyWeaponManager.currentWeapon.gameObject.GetComponent<MyWeapon>().weaponName;
 		for (int i = 0; i < items.Count; i++)
@@ -92,20 +92,27 @@ public class MyInventory : MonoBehaviour
 						if (mainSlots[j].item.itemName == weaponName)
 						{
 							mainSlots[j].item = null;
+							items.RemoveAt(i);
+							return;
 						}
 					}
-					
+					return;
 				}	
 				if(items[i].weapon.weaponType == WeaponType.Sub)
 				{
 					subSlot.item = null;
+					items.RemoveAt(i);
+					return;
 				}
 				if(items[i].weapon.weaponType == WeaponType.Melee)
 				{
 					meeleSlot.item = null;
+					items.RemoveAt(i);
+					return;
 				}
-				items.RemoveAt(i);
+
 			}
 		}
+		MyWeaponManager.currentWeapon = null;
 	}
 }
