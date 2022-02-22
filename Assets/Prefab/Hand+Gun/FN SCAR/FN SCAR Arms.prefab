@@ -848,7 +848,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4586177524054454
 Transform:
   m_ObjectHideFlags: 0
@@ -905,8 +905,8 @@ MonoBehaviour:
   damage: 5
   attackDelay: 0.1
   accuracy: 0
-  fireRate: 0.05
-  reloadTime: 4
+  fireRate: 0.1
+  reloadTime: 1.5
   reloadBulletCount: 30
   curentBulletCount: 30
   maxBulletCount: 30
@@ -915,12 +915,14 @@ MonoBehaviour:
   retroActionFineSightForce: -0.05
   camActionForce: 0.5
   camActionFineSightForce: 0.25
-  camUpActionForce: -0.1
+  camUpActionForce: -0.07
   camUpActionFineSightForce: -0.05
   fineSightOriginPos: {x: -0.1715, y: 0.175, z: -0.3}
   gunPos: {x: 0, y: 0.1, z: -0.1}
   bullet: {fileID: 1385112685355120, guid: 3744e971b409ff74cacda4c9d968c48e, type: 3}
   bulletPos: {fileID: 1160595168}
+  weaponItemPrefab: {fileID: 8552030783144738807, guid: 66a2d00748eb1dd4f9affabb94ad437e,
+    type: 3}
   anim: {fileID: 1167369309}
   fire_Sound: {fileID: 8300000, guid: a82c3964a4dfebc4fb3ca173e25a4d16, type: 3}
 --- !u!1 &1295067239180088

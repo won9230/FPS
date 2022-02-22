@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(MyWeaponMoveAnim))]
 public class MyWeaponCtrl : MonoBehaviour
 {
-	public MyWeapon currentWeapon; //들고있는 무기
+	public MyWeapon currentWeapon; //플레이거가 들고있는 무기
 	//public Transform currentObject; //들고있는 무기 오브젝트
 	public GameObject fineSightPos; //조준 위치
 
@@ -34,7 +34,7 @@ public class MyWeaponCtrl : MonoBehaviour
 	{
 		if (currentWeapon != null)
 		{
-			if (currentWeapon.weaponType == WeaponType.GUN)
+			if (currentWeapon.weaponType == WeaponType.GUN || currentWeapon.weaponType == WeaponType.Sub)
 			{
 				GunFireRateCalc();
 				TryFire();
@@ -269,7 +269,7 @@ public class MyWeaponCtrl : MonoBehaviour
 
 //======================================근접구현=============================
 
-	public void MeeleAttack()
+	public void MeeleAttack() //플레이어 근접 공격
 	{
 		if (Input.GetMouseButtonDown(0))
 		{
@@ -277,12 +277,12 @@ public class MyWeaponCtrl : MonoBehaviour
 		}
 	}
 
-	private void TryMeeleAttack()
+	private void TryMeeleAttack() //플레이어 근접 공격(애니메이션)
 	{
 		anim.SetTrigger("Shoot");
 	}
 
-	public void WeaponChange(MyWeapon _myWeapon) //무기 변경
+	public void WeaponChange(MyWeapon _myWeapon) //플레이어 무기 변경
 	{
 		if (!isReload)
 		{
@@ -297,6 +297,15 @@ public class MyWeaponCtrl : MonoBehaviour
 			fineSightPos.transform.localPosition = currentWeapon.gunPos;
 			originPos = currentWeapon.gunPos;
 			currentWeapon.gameObject.SetActive(true);
+		}
+	}
+	public void WeaponAway()
+	{
+		if (!isReload)
+		{
+			CancelReload();
+			MyWeaponManager.currentWeapon.gameObject.SetActive(false);
+			Instantiate(currentWeapon.GetComponent<MyWeapon>().weaponItemPrefab);
 		}
 	}
 }

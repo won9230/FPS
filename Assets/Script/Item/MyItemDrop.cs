@@ -10,7 +10,27 @@ public class MyItemDrop : MonoBehaviour
 	public void Drop()
 	{
 		myInventory = FindObjectOfType<MyInventory>();
-		myInventory.AddItem(item);
-		Destroy(gameObject);
+		for (int i = 0; i < myInventory.mainSlots.Length; i++)
+		{
+			if (myInventory.mainSlots[i].item == null)
+			{
+				myInventory.AddItem(item);
+				Destroy(gameObject);
+				return;
+			}
+			else if (myInventory.subSlot.item == null)
+			{
+				myInventory.AddItem(item);
+				Destroy(gameObject);
+				return;
+			}
+			else if (myInventory.meeleSlot.item == null)
+			{
+				myInventory.AddItem(item);
+				Destroy(gameObject);
+				return;
+			}
+		}
+		
 	}
 }

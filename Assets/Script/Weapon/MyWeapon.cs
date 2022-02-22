@@ -51,9 +51,10 @@ public class MyWeapon : MonoBehaviour
 	public GameObject bullet;
 	[Tooltip("총알 발사 위치")]
 	public Transform bulletPos;
-
-
+	[Tooltip("무기 아이템화 프리펩")]
+	public GameObject weaponItemPrefab;
+	[Tooltip("무기 애니메이션")]
 	public Animator anim;
-
+	[Tooltip("무기 공격 사운드")]
 	public AudioClip fire_Sound;
 }

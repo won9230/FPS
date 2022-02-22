@@ -1853,6 +1853,8 @@ MonoBehaviour:
   gunPos: {x: -0.1, y: 0.1, z: -0.4}
   bullet: {fileID: 1546040219424834, guid: f9178ff2c7773f74682b8fb1f8bede74, type: 3}
   bulletPos: {fileID: 852834900}
+  weaponItemPrefab: {fileID: 6860687928521346241, guid: 3a20801d567cf774f89380ea0c0e35bb,
+    type: 3}
   anim: {fileID: 1605793465336629486}
   fire_Sound: {fileID: 8300000, guid: 11a92f8e0363d4144a49462023774ad5, type: 3}
 --- !u!1 &3611161275947379070

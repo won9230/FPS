@@ -19,82 +19,93 @@ public class MyInventory : MonoBehaviour
 		subSlot = slotParent.GetComponentInChildren<MySubSlot>();
 		meeleSlot = slotParent.GetComponentInChildren<MyMeeleSlot>();
 	}
-	private void Awake()
-	{
-		FreshSlot(null);
-	}
 
-	public void FreshSlot(MyWeapon _item)
+	public void FreshSlot()
 	{
-		if (_item == null)
-			return;
 		int i = items.Count - 1;
-		//if (_item.weaponType == WeaponType.GUN)
-		//{
-		//	for (; i < items.Count && i < mainSlots.Length; i++)
-		//	{
-		//		mainSlots[i].item = items[i];
-		//		Debug.Log("main" + mainSlots[i].item.itemName + " " + _item.weaponType);
-		//	}
-		//	for (; i < mainSlots.Length; i++)
-		//	{
-		//		mainSlots[i].item = null;
-		//	}
-		//}
-		//if (_item.weaponType == WeaponType.Sub)
-		//{
-		//	for (; i < items.Count; i++)
-		//	{
-		//		subSlot.item = items[i];
-		//		Debug.Log("sub"+subSlot.item.itemName+" "+_item.weaponType);
-		//	}
-		//}
-		//if (_item.weaponType == WeaponType.Melee)
-		//{
-		//	for (; i < items.Count; i++)
-		//	{
-		//		meeleSlot.item = items[i];
-		//		Debug.Log("meele" + meeleSlot.item.itemName + " " + _item.weaponType);
-		//	}
-		//}
-		///==========================================
+		int j = 0;
 		for (; i < items.Count; i++)
 		{
-			for (int j = 0; j < mainSlots.Length; j++)
+			for (; j < mainSlots.Length; j++)
 			{
 				if (mainSlots[j].item == null && items[i].weapon.weaponType == WeaponType.GUN)
 				{
 					mainSlots[j].item = items[i];
-					Debug.Log("main" + mainSlots[j].item.itemName + " " + _item.weaponType);
+					//Debug.Log("main" + mainSlots[j].item.itemName + " " + _item.weaponType);
+					return;
 				}
 			}
-			if(items[i].weapon.weaponType == WeaponType.Sub && subSlot.item == null)
+			for (; j < mainSlots.Length; j++)
+			{
+				mainSlots[j].item = null;
+			}
+			if (items[i].weapon.weaponType == WeaponType.Sub && subSlot.item == null)
 			{
 				subSlot.item = items[i];
-				Debug.Log("sub" + subSlot.item.itemName + " " + _item.weaponType);
+				//Debug.Log("sub" + subSlot.item.itemName + " " + _item.weaponType);
 			}
 			if(items[i].weapon.weaponType == WeaponType.Melee && meeleSlot.item == null)
 			{
 				meeleSlot.item = items[i];
-				Debug.Log("meele" + meeleSlot.item.itemName + " " + _item.weaponType);
+				//Debug.Log("meele" + meeleSlot.item.itemName + " " + _item.weaponType);
 			}
-		}
-		for (; i < mainSlots.Length; i++)
-		{
-			mainSlots[i].item = null;
 		}
 
 	}
+
 	public void AddItem(MyItem _item)
 	{
 		if(items.Count < 4)
 		{
 			items.Add(_item);
-			FreshSlot(_item.weapon);
+			FreshSlot();
 		}
 		else
 		{
 			print("아이템을 더 먹지 못함");
+		}
+	}
+	public void DestroyItem()
+	{
+		if (items.Count > 0)
+		{
+			DestroySlotItem();	
+		}
+		else
+		{
+			return;
+		}
+	}
+	private void DestroySlotItem()
+	{
+		if (MyWeaponManager.currentWeapon.gameObject == null)
+			return;
+		string weaponName = MyWeaponManager.currentWeapon.gameObject.GetComponent<MyWeapon>().weaponName;
+		for (int i = 0; i < items.Count; i++)
+		{
+			if (items[i].weapon.weaponName == weaponName)
+			{
+				if(items[i].weapon.weaponType == WeaponType.GUN)
+				{
+					for (int j = 0; j < mainSlots.Length; j++)
+					{
+						if (mainSlots[j].item.itemName == weaponName)
+						{
+							mainSlots[j].item = null;
+						}
+					}
+					
+				}	
+				if(items[i].weapon.weaponType == WeaponType.Sub)
+				{
+					subSlot.item = null;
+				}
+				if(items[i].weapon.weaponType == WeaponType.Melee)
+				{
+					meeleSlot.item = null;
+				}
+				items.RemoveAt(i);
+			}
 		}
 	}
 }

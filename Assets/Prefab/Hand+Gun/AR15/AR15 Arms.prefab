@@ -1337,7 +1337,7 @@ MonoBehaviour:
   damage: 5
   attackDelay: 0.1
   accuracy: 0
-  fireRate: 0.05
+  fireRate: 0.1
   reloadTime: 4
   reloadBulletCount: 20
   curentBulletCount: 20
@@ -1353,6 +1353,8 @@ MonoBehaviour:
   gunPos: {x: 0.05, y: 0.1, z: -0.15}
   bullet: {fileID: 1385112685355120, guid: 3744e971b409ff74cacda4c9d968c48e, type: 3}
   bulletPos: {fileID: 2105345312}
+  weaponItemPrefab: {fileID: 1715512519387184476, guid: f606d0606ae1c5b42be2dfa9915226b7,
+    type: 3}
   anim: {fileID: 1275538916}
   fire_Sound: {fileID: 8300000, guid: 58d88e3cbcb9ff143a0dfd112ade1e79, type: 3}
 --- !u!1 &1555956422526240

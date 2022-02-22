@@ -29,6 +29,8 @@ public class MyMainSlot : MonoBehaviour
 			else
 			{
 				image.color = new Color(1, 1, 1, 0);
+				weaponName = null;
+				weaponType = null;
 			}
 		}
 	}

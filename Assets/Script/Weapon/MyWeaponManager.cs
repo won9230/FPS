@@ -21,6 +21,7 @@ public class MyWeaponManager : MonoBehaviour
 	public MyWeaponCtrl myWeaponCtrl;
 	public static Transform currentWeapon;//총
 	public static Animator anim;
+	public int currentInt;
 
 	#region 싱글톤
 	private void Awake()
@@ -45,6 +46,7 @@ public class MyWeaponManager : MonoBehaviour
 	{
 		if (!isChangeWeapon)
 		{
+			WeaponAway();
 			if (Input.GetKeyDown(KeyCode.Alpha1))
 			{
 				StartCoroutine(ChangeWeapon(myInventory.mainSlots[0].weaponType, myInventory.mainSlots[0].weaponName));
@@ -59,7 +61,7 @@ public class MyWeaponManager : MonoBehaviour
 			}	
 			else if(Input.GetKeyDown(KeyCode.Alpha4))
 			{
-			StartCoroutine(ChangeWeapon(myInventory.meeleSlot.weaponType, myInventory.meeleSlot.weaponName));
+				StartCoroutine(ChangeWeapon(myInventory.meeleSlot.weaponType, myInventory.meeleSlot.weaponName));
 			}
 		}
 	}
@@ -91,6 +93,24 @@ public class MyWeaponManager : MonoBehaviour
 		{
 			if(!isChangeWeapon)
 				myWeaponCtrl.WeaponChange(myWeaponTable[_name]);
+		}	
+		if(_type == "Sub" || _type == "Melee")
+		{
+			if(!isChangeWeapon)
+				myWeaponCtrl.WeaponChange(myWeaponTable[_name]);
+		}		
+		if(_type == "GUN" || _type == "Melee")
+		{
+			if(!isChangeWeapon)
+				myWeaponCtrl.WeaponChange(myWeaponTable[_name]);
+		}
+	}
+	private void WeaponAway()
+	{
+		if (Input.GetKeyDown(KeyCode.G))
+		{
+			myWeaponCtrl.WeaponAway();
+			myInventory.DestroyItem();
 		}
 	}
 }
