@@ -47,8 +47,7 @@ public class PlayerCtrl : LivingEntity
 
 	protected override void Start()
 	{
-		Cursor.visible = false;
-		Cursor.lockState = CursorLockMode.Locked;
+
 		capsuleCollider = GetComponent<CapsuleCollider>();
 		rigidbody = GetComponent<Rigidbody>();
 		myWeapon = GetComponentInChildren<MyWeaponCtrl>();
@@ -58,7 +57,7 @@ public class PlayerCtrl : LivingEntity
 	}
 	private void Update()
 	{
-		if (!dead)
+		if (!dead && !InGameUI.isChatMode)
 		{
 			IsGround();
 			TryJump();

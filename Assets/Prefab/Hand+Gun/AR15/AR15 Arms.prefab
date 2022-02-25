@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2105345312}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: bulletPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4025674158525096}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: arm_end_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4046908421962446}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: index_low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4840708927560704}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: pinky_end_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4675547499425864}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: arm_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4411412543305326}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: index_end_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4943081853393224}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: ring_middle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4462760457015370}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: thumb_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +255,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4961500020671008}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: ring_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,7 +287,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4950104364230630}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: arm_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -319,7 +319,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4211507550344208}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: arm (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -351,7 +351,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4032737713331028}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: thumb_end_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -381,7 +381,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4671493593007562}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: middle_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,7 +415,7 @@ GameObject:
   - component: {fileID: 4787174762038346}
   - component: {fileID: 33932079532224254}
   - component: {fileID: 23954640621948478}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: AR15_slide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -492,7 +492,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4746070390287410}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: pinky_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -523,7 +523,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4066327737770798}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: middle_top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -554,7 +554,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4059435079589284}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: index_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -585,7 +585,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4397783257563034}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: ring_middle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -616,7 +616,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4689191369827602}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: pinky_top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -647,7 +647,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4118049719391820}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: thumb_low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -678,7 +678,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4901198606361846}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: middle_end_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -708,7 +708,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4909648707327464}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: thumb_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -739,7 +739,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4587396538937774}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: ring_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -770,7 +770,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4029837835139912}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: index_top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -801,7 +801,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4097356151147498}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: pinky_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -833,7 +833,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4471597380983724}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: middle_top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -865,7 +865,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4229052886520066}
   - component: {fileID: 137947001211910290}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -975,7 +975,7 @@ GameObject:
   - component: {fileID: 4132333454217170}
   - component: {fileID: 33727326943057888}
   - component: {fileID: 23141463365065714}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: AR15_magazine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1052,7 +1052,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4687480302618740}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: thumb_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1083,7 +1083,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4355088157128198}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: pinky_top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1114,7 +1114,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4218372575924866}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: thumb_end_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1144,7 +1144,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4155148412915914}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: pinky_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1175,7 +1175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4048455510125928}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: middle_low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1206,7 +1206,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4772691232185318}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: index_top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1237,7 +1237,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4666400596250870}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: ring_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1271,7 +1271,7 @@ GameObject:
   - component: {fileID: 4350824643547490}
   - component: {fileID: 1275538916}
   - component: {fileID: 1275538915}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: AR15 Arms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1366,7 +1366,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4520968034162594}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: index_end_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1398,7 +1398,7 @@ GameObject:
   - component: {fileID: 4053066624573626}
   - component: {fileID: 33324983303725764}
   - component: {fileID: 23246267522618654}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: 'AR15 '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1475,7 +1475,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4631438000784602}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: ring_low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1507,7 +1507,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4291542659223822}
   - component: {fileID: 137131850671026622}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1615,7 +1615,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4860155528565980}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: ring_low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1646,7 +1646,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4287400755871772}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: forearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1683,7 +1683,7 @@ GameObject:
   - component: {fileID: 4131737435751664}
   - component: {fileID: 33506963890673322}
   - component: {fileID: 23984830376471330}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: AR15_plank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1760,7 +1760,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4816871865793020}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: arm 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1791,7 +1791,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4548893947564934}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Armature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1823,7 +1823,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4446692992708188}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: middle_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1854,7 +1854,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4969814219576154}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: middle_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1885,7 +1885,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4712803421501708}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: middle_mid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1916,7 +1916,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4386305996482590}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: index_low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1947,7 +1947,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4105804784230866}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: pinky_low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1978,7 +1978,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4971792547150672}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: thumb_top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2009,7 +2009,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4415509742094292}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Armature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2041,7 +2041,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4095506604395224}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: thumb_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2073,7 +2073,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4001761304368402}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: ring_end_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2103,7 +2103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4826430239424220}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: middle_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2135,7 +2135,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4307127783769192}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: arm_end_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2165,7 +2165,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4367014628532312}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: arm 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2196,7 +2196,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4654842541321008}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2228,7 +2228,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4495972780548586}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: thumb_top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2259,7 +2259,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4603466186406512}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: pinky_mid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2290,7 +2290,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4464276126677698}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: index_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2321,7 +2321,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4435864044881452}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: index_mid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2352,7 +2352,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4436592269713854}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: index_mid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2383,7 +2383,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4284014519477006}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: pinky_low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2414,7 +2414,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4445342623921324}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: pinky_end_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2444,7 +2444,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4671205373798032}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: ring_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2475,7 +2475,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4905129807137480}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: pinky_mid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2506,7 +2506,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4638560043124936}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: forearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2541,7 +2541,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4463267170467258}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: ring_top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2572,7 +2572,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4675555586730984}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: ring_top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2603,7 +2603,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4408949805541514}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: thumb_low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2634,7 +2634,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4573417253043898}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: middle_mid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2665,7 +2665,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4878037498914592}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: middle_end_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2695,7 +2695,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4429469742633492}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: ring_end_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2727,7 +2727,7 @@ GameObject:
   - component: {fileID: 4373936240902054}
   - component: {fileID: 33362732464584266}
   - component: {fileID: 23504466563477502}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: AR15_pull
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2804,7 +2804,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4107520744818922}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: middle_low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2835,7 +2835,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4628694103148522}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: index_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2867,7 +2867,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4054454484429806}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: pinky_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2899,7 +2899,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4918745202460944}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: index_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2933,7 +2933,7 @@ GameObject:
   - component: {fileID: 4353690783416268}
   - component: {fileID: 33852746330620148}
   - component: {fileID: 23891530751608540}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: AR15_cap
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -13,7 +13,7 @@ public class MyInventory : MonoBehaviour
 	public MySubSlot subSlot;
 	public MyMeeleSlot meeleSlot;
 
-	private void OnValidate()
+	private void Start()
 	{
 		mainSlots = slotParent.GetComponentsInChildren<MyMainSlot>();
 		subSlot = slotParent.GetComponentInChildren<MySubSlot>();

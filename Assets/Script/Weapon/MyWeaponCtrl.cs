@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Photon.Pun;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,6 +22,7 @@ public class MyWeaponCtrl : MonoBehaviour
 	private AudioSource audioSource; //총 소리
 	private Animator anim; //애니
 	private MyWeaponMoveAnim myWeaponMoveAnim;
+
 
 	private void Start()
 	{
@@ -73,6 +75,7 @@ public class MyWeaponCtrl : MonoBehaviour
 	}
 	private void Shoot() // 발사
 	{
+	
 		StopAllCoroutines();
 		currentWeapon.curentBulletCount--; //총알 --
 		currentFireRate = currentWeapon.fireRate; // 연사속도
