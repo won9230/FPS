@@ -96,6 +96,10 @@ public class BossCtrl : LivingEntity
 		agent.isStopped = true;
 		yield return new WaitForSeconds(1.0f);
 	}
+	public IEnumerator BossSkillCorutine()
+	{
+		yield return new WaitForSeconds(0.5f);
+	}
 	private void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.red;
