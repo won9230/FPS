@@ -19,13 +19,18 @@ public class MyWeaponSway : MonoBehaviour
 
 	[SerializeField] private GameObject game;
 
+	[SerializeField] private InGameUI inGameUI;
+
 	private void Start()
 	{
 		originPos = game.transform.localPosition;
 	}
 	private void Update()
 	{
-		TrySway();
+		if (!inGameUI.isChatMode)
+		{
+			TrySway();
+		}
 	}
 	private void TrySway()
 	{

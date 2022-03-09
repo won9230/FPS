@@ -9,19 +9,21 @@ public class ChatManager : MonoBehaviourPunCallbacks
 	public Text[] chatText;
 	public InputField chatInput;
 	public PhotonView PV;
+	public GameObject chatPanel;
+
 	private void Start()
 	{
-		//chatText = GetComponentsInChildren<Text>();
+		chatPanel.SetActive(false);
 	}
 	private void Update()
 	{
-		if (InGameUI.isChatMode)
-		{
-			if (Input.GetKeyDown(KeyCode.Return) && chatInput.text != "")
-			{
-				Send();
-			}
-		}
+		//if (PV.IsMine)
+		//{
+		//	if (Input.GetKeyDown(KeyCode.Return) && chatInput.text != "")
+		//	{
+		//		Send();
+		//	}
+		//}
 	}
 	public override void OnPlayerEnteredRoom(Player newPlayer)
 	{

@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class MyWeaponManager : MonoBehaviour
 {
-	public static MyWeaponManager instance = null;
-	public static bool isChangeWeapon = false; //중복실행방지
+	public bool isChangeWeapon = false; //중복실행방지
 
 	[SerializeField] private float changeWeaponDelayTime; //총 바꾸는 시간
 	[SerializeField] private float changeWeaponEndTime; //총꾸기 끝나는 시간
@@ -19,19 +18,19 @@ public class MyWeaponManager : MonoBehaviour
 
 	private MyInventory myInventory;
 	public MyWeaponCtrl myWeaponCtrl;
-	public static Transform currentWeapon;//총
+	public Transform currentWeapon;//총
 	public static Animator anim;
 	public int currentInt;
 
-	#region 싱글톤
-	private void Awake()
-	{
-		if (instance == null)
-			instance = this;
-		else if (instance != this)
-			Destroy(this.gameObject);
-	}
-	#endregion
+	//#region 싱글톤
+	//private void Awake()
+	//{
+	//	if (instance == null)
+	//		instance = this;
+	//	else if (instance != this)
+	//		Destroy(this.gameObject);
+	//}
+	//#endregion
 
 	private void Start()
 	{
@@ -65,7 +64,7 @@ public class MyWeaponManager : MonoBehaviour
 			}
 		}
 	}
-	public IEnumerator ChangeWeapon(string _type, string _name)
+	public IEnumerator ChangeWeapon(string _type, string _name) //무기 바꾸기 코루틴
 	{
 		if (_type != "" && _name != "")
 		{
@@ -78,16 +77,19 @@ public class MyWeaponManager : MonoBehaviour
 		}
 		yield return null;
 	}
-	private void CancelWeaponAciton()
+	private void CancelWeaponAciton() //무기 줌인 캔슬
 	{
 		switch (currentWeaponType)
 		{
 			case "GUN":
 				myWeaponCtrl.CancelFineSight();
+				break;		
+			case "Sub":
+				myWeaponCtrl.CancelFineSight();
 				break;
 		}
 	}
-	private void WeaponChange(string _type, string _name)
+	private void WeaponChange(string _type, string _name) //무기 바꾸기
 	{
 		if(_type == "GUN" || _type == "Melee")
 		{
@@ -98,21 +100,15 @@ public class MyWeaponManager : MonoBehaviour
 		{
 			if(!isChangeWeapon)
 				myWeaponCtrl.WeaponChange(myWeaponTable[_name]);
-		}		
-		if(_type == "GUN" || _type == "Melee")
-		{
-			if(!isChangeWeapon)
-				myWeaponCtrl.WeaponChange(myWeaponTable[_name]);
 		}
 	}
-	private void WeaponAway()
+	private void WeaponAway()//무기 버리기
 	{
 		if (Input.GetKeyDown(KeyCode.G))
 		{
 			//MyWeaponManager.currentWeapon == null;
 			myWeaponCtrl.WeaponAway();
 			myInventory.DestroyItem();
-
 		}
 	}
 }

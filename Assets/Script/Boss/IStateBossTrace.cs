@@ -7,6 +7,7 @@ public class IStateBossTrace : IState<BossCtrl>
 	public void OnEnter(BossCtrl qstate)
 	{
 		qstate.anim.SetBool("Trace", true);
+		qstate.StartCoroutine(qstate.BossSkillTimeCorutine());
 	}
 	public void OnExit(BossCtrl qstate)
 	{

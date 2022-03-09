@@ -22,6 +22,9 @@ public class MyWeaponCtrl : MonoBehaviour
 	private AudioSource audioSource; //총 소리
 	private Animator anim; //애니
 	private MyWeaponMoveAnim myWeaponMoveAnim;
+	private MyWeaponManager myWeaponManager;
+	private PlayerCtrl playerCtrl;
+	[SerializeField] private InGameUI inGameUI;
 
 
 	private void Start()
@@ -30,12 +33,15 @@ public class MyWeaponCtrl : MonoBehaviour
 		//anim = currentWeapon.GetComponent<Animator>();
 		myWeaponMoveAnim = GetComponent<MyWeaponMoveAnim>();
 		myWeaponMoveAnim.anim = anim;
+		myWeaponManager = GetComponentInParent<MyWeaponManager>();
+
+		playerCtrl = GetComponentInParent<PlayerCtrl>();
 		originPos = fineSightPos.transform.localPosition;
 		originRot = camPos.transform.localRotation;
 	}
 	private void Update()
 	{
-		if (currentWeapon != null)
+		if (currentWeapon != null && !inGameUI.isChatMode)
 		{
 			if (currentWeapon.weaponType == WeaponType.GUN || currentWeapon.weaponType == WeaponType.Sub)
 			{
@@ -127,15 +133,8 @@ public class MyWeaponCtrl : MonoBehaviour
 		audioSource.clip = _cilp;
 		audioSource.Play();
 	}
-	
-	private void TryFineSight() //조준1
-	{
-		if (!isReload && !PlayerCtrl.instance.isRun)
-		{
-			FineSight();
-		}
-	}
-	public void CancelReload()
+
+	public void CancelReload() //재장전 캔슬
 	{
 		if (isReload)
 		{
@@ -150,6 +149,13 @@ public class MyWeaponCtrl : MonoBehaviour
 			isFineSightMode = false;
 			StopAllCoroutines();
 			StartCoroutine(FineSightDective());
+		}
+	}
+	private void TryFineSight() //조준1
+	{
+		if (!isReload && !playerCtrl.isRun)
+		{
+			FineSight();
 		}
 	}
 	private void FineSight() //조준
@@ -168,7 +174,7 @@ public class MyWeaponCtrl : MonoBehaviour
 		}
 		anim.SetBool("FineSightMode", isFineSightMode);
 	}
-	IEnumerator FineSightActive() //조준 활성화
+	IEnumerator FineSightActive() //줌 활성화
 	{
 		while (fineSightPos.transform.localPosition != currentWeapon.fineSightOriginPos)
 		{
@@ -176,7 +182,7 @@ public class MyWeaponCtrl : MonoBehaviour
 			yield return null;
 		}
 	}
-	IEnumerator FineSightDective()//조준 비활성화
+	IEnumerator FineSightDective()//줌 비활성화
 	{
 		while (fineSightPos.transform.localPosition != originPos)
 		{
@@ -217,7 +223,7 @@ public class MyWeaponCtrl : MonoBehaviour
 			}
 		}
 	}
-	IEnumerator CamAction2()
+	IEnumerator CamAction2() //총 위아래 반동
 	{
 		Quaternion recoilBack = new Quaternion(currentWeapon.camUpActionForce, originRot.y, originRot.z,0f);
 		Quaternion retroActionRecoil = new Quaternion(currentWeapon.camUpActionFineSightForce, originRot.y, originRot.z,0f);
@@ -265,9 +271,9 @@ public class MyWeaponCtrl : MonoBehaviour
 	private void CamAction() //총 카메라 반동
 	{
 		if (!isFineSightMode)
-			PlayerCtrl.instance.CamUp();
+			playerCtrl.CamUp();
 		else
-			PlayerCtrl.instance.CamSightForce();
+			playerCtrl.CamSightForce();
 	}
 
 
@@ -291,24 +297,24 @@ public class MyWeaponCtrl : MonoBehaviour
 		if (!isReload)
 		{
 			CancelReload();
-			if (MyWeaponManager.currentWeapon != null)
-				MyWeaponManager.currentWeapon.gameObject.SetActive(false);
+			if (myWeaponManager.currentWeapon != null)
+				myWeaponManager.currentWeapon.gameObject.SetActive(false);
 
 			currentWeapon = _myWeapon;
 			anim = currentWeapon.anim;
 			myWeaponMoveAnim.anim = anim;
-			MyWeaponManager.currentWeapon = currentWeapon.GetComponent<Transform>();
+			myWeaponManager.currentWeapon = currentWeapon.GetComponent<Transform>();
 			fineSightPos.transform.localPosition = currentWeapon.gunPos;
 			originPos = currentWeapon.gunPos;
 			currentWeapon.gameObject.SetActive(true);
 		}
 	}
-	public void WeaponAway()
+	public void WeaponAway() //아이템 버리기
 	{
 		if (!isReload && currentWeapon != null)
 		{
 			CancelReload();
-			MyWeaponManager.currentWeapon.gameObject.SetActive(false);
+			myWeaponManager.currentWeapon.gameObject.SetActive(false);
 			Instantiate(currentWeapon.GetComponent<MyWeapon>().weaponItemPrefab,playerItemSpawn.position,Quaternion.identity);
 			currentWeapon = null;
 		}

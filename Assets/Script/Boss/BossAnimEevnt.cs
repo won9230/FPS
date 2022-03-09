@@ -10,11 +10,11 @@ public class BossAnimEevnt : MonoBehaviour
 	{
 		gameObject.SetActive(false);
 	}
-	public void BossAttackTrue()
+	public void BossAttackTrue() //공격 콜라이더 켜짐(애니메이션 이벤트)
 	{
 		gameObject.SetActive(true);
 	}
-	public void BossAttackFalse()
+	public void BossAttackFalse() //공격 콜라이더 켜짐(애니메이션 이벤트)
 	{
 		gameObject.SetActive(false);
 	}

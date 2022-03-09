@@ -2,56 +2,61 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class InGameUI : MonoBehaviour
 {
-	public GameObject roomPanel;
+	private ChatManager chatManager;
 	public PlayerCtrl playerCtrl;
 	public Slider playerHp;
 	public Text[] texts;
-	public static bool isChatMode = false;
+	private MyWeaponManager weaponManager;
+	private PhotonView PV;
+	public bool isChatMode = false;
 	private void Start()
 	{
 		Cursor.visible = false;
 		Cursor.lockState = CursorLockMode.Locked;
-		roomPanel.SetActive(false);
+		weaponManager = GetComponentInParent<MyWeaponManager>();
+		PV = GetComponentInParent<PhotonView>();
+		chatManager = FindObjectOfType<ChatManager>();
 		playerHp.maxValue = playerCtrl.maxHp;
 	}
 	private void Update()
 	{
 		PlayerHpBar();
 		PlayerBullet();
-		ChatMode();
+		if (Input.GetKeyDown(KeyCode.T) && PV.IsMine)
+		{
+			ChatMode();
+		}
 	}
-	private void PlayerHpBar()
+	private void PlayerHpBar() //플레이어 HP
 	{
 		playerHp.value = playerCtrl.hp;
 	}
-	private void PlayerBullet()
+	private void PlayerBullet() //플레이어 총알 갯수
 	{
-		if (MyWeaponManager.instance.myWeaponCtrl.currentWeapon != null)
+		if (weaponManager.myWeaponCtrl.currentWeapon != null)
 		{
-			texts[0].text = MyWeaponManager.instance.myWeaponCtrl.currentWeapon.carryBulletCount.ToString();
-			texts[1].text = MyWeaponManager.instance.myWeaponCtrl.currentWeapon.curentBulletCount.ToString();
+			texts[0].text = weaponManager.myWeaponCtrl.currentWeapon.carryBulletCount.ToString();
+			texts[1].text = weaponManager.myWeaponCtrl.currentWeapon.curentBulletCount.ToString();
 		}
 	}
-	private void ChatMode()
+	private void ChatMode() //플레이어 채팅 모드
 	{
-		if (Input.GetKeyDown(KeyCode.T))
-		{
-			isChatMode = !isChatMode;
-		}
+		isChatMode = !isChatMode;
 		if (isChatMode)
 		{
 			Cursor.visible = true;
 			Cursor.lockState = CursorLockMode.None;
-			roomPanel.SetActive(true);
+			chatManager.chatPanel.SetActive(true);
 		}
 		else
 		{
 			Cursor.visible = false;
 			Cursor.lockState = CursorLockMode.Locked;
-			roomPanel.SetActive(false);
+			chatManager.chatPanel.SetActive(false);
 		}
 	}
 }

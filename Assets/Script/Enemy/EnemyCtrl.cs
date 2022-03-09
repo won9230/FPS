@@ -25,7 +25,6 @@ public class EnemyCtrl : LivingEntity
 
 	protected override void Start()
 	{
-		playerTr = PlayerCtrl.instance.transform;
 		//enemyTr = GetComponent<Transform>();
 		anim = GetComponent<Animator>();
 		agent = GetComponent<NavMeshAgent>();
@@ -33,6 +32,7 @@ public class EnemyCtrl : LivingEntity
 		hp = maxHp;
 		StartCoroutine(CheckState());
 		StartCoroutine(Action());
+		StartCoroutine(FindPlayer());
 	}
 	private void Update()
 	{
@@ -41,6 +41,19 @@ public class EnemyCtrl : LivingEntity
 		{
 			rot = Quaternion.LookRotation(agent.desiredVelocity);
 			transform.rotation = Quaternion.Slerp(transform.rotation, rot, Time.deltaTime * 7f); 
+		}
+	}
+	IEnumerator FindPlayer()
+	{
+		while (true)
+		{
+			GameObject player = GameObject.Find("Player(Clone)");
+			yield return new WaitForSeconds(0.3f);
+			if (player != null)
+			{
+				playerTr = player.transform;
+				StopCoroutine(FindPlayer());
+			}
 		}
 	}
 	IEnumerator CheckState()
@@ -57,14 +70,18 @@ public class EnemyCtrl : LivingEntity
 				Destroy(gameObject,3f);
 				StopAllCoroutines();
 			}
-			if(state != eState.Ready || state != eState.Die)
+			if(state != eState.Ready || state != eState.Die )
 			{
+				float dist;
 				if (dead) yield break;
-				float dist = (playerTr.position - transform.position).sqrMagnitude;
-				if (dist <= attackDist * attackDist)
-					state = eState.Attack;
-				else
-					state = eState.Trace;
+				if (playerTr != null)
+				{
+					dist = (playerTr.position - transform.position).sqrMagnitude;
+					if (dist <= attackDist * attackDist)
+						state = eState.Attack;
+					else
+						state = eState.Trace;
+				}
 			}
 			yield return new WaitForSeconds(0.3f);
 		}
@@ -84,7 +101,8 @@ public class EnemyCtrl : LivingEntity
 				case eState.Trace:
 					anim.SetBool("Move", true);
 					anim.SetFloat("MoveSpeed", Random.Range(0.9f, 1.2f));
-					TraceTarget(playerTr.position);
+					if(playerTr != null)
+						TraceTarget(playerTr.position);
 					break;
 				case eState.Attack:
 					MoveStop();

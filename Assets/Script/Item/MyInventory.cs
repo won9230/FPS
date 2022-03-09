@@ -8,6 +8,7 @@ public class MyInventory : MonoBehaviour
 
 	[SerializeField]
 	private Transform slotParent;
+	private MyWeaponManager myWeaponManager;
 
 	public MyMainSlot[] mainSlots;
 	public MySubSlot subSlot;
@@ -18,9 +19,10 @@ public class MyInventory : MonoBehaviour
 		mainSlots = slotParent.GetComponentsInChildren<MyMainSlot>();
 		subSlot = slotParent.GetComponentInChildren<MySubSlot>();
 		meeleSlot = slotParent.GetComponentInChildren<MyMeeleSlot>();
+		myWeaponManager = GetComponent<MyWeaponManager>();
 	}
 
-	public void FreshSlot()
+	public void FreshSlot() //슬롯 구분 및 정렬
 	{
 		int i = items.Count - 1;
 		int j = 0;
@@ -53,7 +55,7 @@ public class MyInventory : MonoBehaviour
 
 	}
 
-	public void AddItem(MyItem _item)
+	public void AddItem(MyItem _item) //아이템 추가
 	{
 		if(items.Count < 4)
 		{
@@ -65,7 +67,7 @@ public class MyInventory : MonoBehaviour
 			print("아이템을 더 먹지 못함");
 		}
 	}
-	public void DestroyItem()
+	public void DestroyItem() //아이템 삭제체크
 	{
 		if (items.Count > 0)
 		{
@@ -76,11 +78,11 @@ public class MyInventory : MonoBehaviour
 			return;
 		}
 	}
-	private void DestroySlotItem()
+	private void DestroySlotItem() //아이템 슬롯 체크 및 삭제
 	{
-		if (MyWeaponManager.currentWeapon == null)
+		if (myWeaponManager.currentWeapon == null)
 			return;
-		string weaponName = MyWeaponManager.currentWeapon.gameObject.GetComponent<MyWeapon>().weaponName;
+		string weaponName = myWeaponManager.currentWeapon.gameObject.GetComponent<MyWeapon>().weaponName;
 		for (int i = 0; i < items.Count; i++)
 		{
 			if (items[i].weapon.weaponName == weaponName)
@@ -113,6 +115,6 @@ public class MyInventory : MonoBehaviour
 
 			}
 		}
-		MyWeaponManager.currentWeapon = null;
+		myWeaponManager.currentWeapon = null;
 	}
 }

@@ -6,7 +6,7 @@ public class IStateBossPatrol : IState<BossCtrl>
 {
 	public void OnEnter(BossCtrl qstate)
 	{
-		
+
 	}
 
 	public void OnExit(BossCtrl qstate)

@@ -8,8 +8,4 @@ public class MyItem : ScriptableObject
 	public string itemName;
 	public Sprite itemImapge;
 	public MyWeapon weapon;
-	//public GameObject itemPrefab;
-	//public GameObject itemObject;
-
-	//public string weponType;
 }

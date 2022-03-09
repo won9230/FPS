@@ -8,24 +8,30 @@ using UnityEngine.UI;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
-	private string gameVersion = "0.02";
+	private string gameVersion = "1.0";
 
 	[SerializeField] private GameObject main;
 	[SerializeField] private GameObject lobby;
 	public Text connectionInfoText; //네트위크 정보를 표시할 텍스트
 	public Button joinButton; //룸 접속 버튼
 	public InputField roomName, nickName;
-
+	private void Awake()
+	{
+		PhotonNetwork.AutomaticallySyncScene = true;
+	}
 	private void Start()
 	{
 		main.SetActive(true);
 		lobby.SetActive(false);
 		PhotonNetwork.GameVersion = gameVersion; //접속에 필요한 정보 설정
 		PhotonNetwork.ConnectUsingSettings(); //설정한 정보를 가지고 마스터 서버 접속 시도
-		
 		joinButton.interactable = false;
 		connectionInfoText.text = "마스터 서버에 접속중";
 
+	}
+	void Connect()
+	{
+		PhotonNetwork.ConnectUsingSettings();
 	}
 	//마스터 서버 접속 성공시 자동 실행
 	public override void OnConnectedToMaster()
@@ -44,57 +50,55 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 		connectionInfoText.text = "오프라인 : 마스터 서버와 연결되지 않음\n접속 재시도중 ....";
 		PhotonNetwork.ConnectUsingSettings();
 	}
-	public void Connect()
-	{
-		joinButton.interactable = false;
-		if (PhotonNetwork.IsConnected)
-		{
-			connectionInfoText.text = "룸에 접속...";
-			PhotonNetwork.JoinRandomRoom();
-		}
-		else
-		{
-			connectionInfoText.text = "오프라인 : 마스터 서버와 연결되지 않음\n접속 재시도중 ....";
-			PhotonNetwork.ConnectUsingSettings();
-		}
-	}
-	public void JoinLobby()
+	public void JoinLobby() //로비 접속
 	{
 		main.SetActive(false);
 		lobby.SetActive(true);
 		PhotonNetwork.JoinLobby();
 		connectionInfoText.text = "로비 접속 성공";
 	}
-	public override void OnJoinedRoom()
-	{
-		print("방참가 완료");
-	}
+	//public override void OnJoinedRoom()
+	//{
+	//	print("방참가 완료");
+
+	//}
 	public override void OnJoinedLobby()
 	{
 		print("로비참가 완료");
 	}
-	public void CreateRoom()
+	//public override void OnJoinedRoom()
+	//{
+	//	StartCoroutine(WaitForStart());
+	//}
+	//IEnumerator WaitForStart()
+	//{
+	//	yield return new WaitForSeconds(3f);
+	//	PhotonNetwork.Instantiate("Player2", transform.position, Quaternion.identity);
+	//}
+	public void CreateRoom() //방 만들기(버튼)
 	{
-		PhotonNetwork.CreateRoom(roomName.text, new RoomOptions { MaxPlayers = 2 });
+		PhotonNetwork.LoadLevel("MainScenes");
+		PhotonNetwork.CreateRoom(roomName.text, new RoomOptions { MaxPlayers = 4 });
 		print(roomName.text);
 		connectionInfoText.text = roomName.text + "방 만들기완료";
 		PhotonNetwork.LocalPlayer.NickName = nickName.text;
-		PhotonNetwork.LoadLevel("MainScenes");
+		//PhotonNetwork.IsMessageQueueRunning = false;
 	}
-	public void JoinRoom()
+	public void JoinRoom() //룸 접속하기(버튼)
 	{
+		PhotonNetwork.LoadLevel("MainScenes");
 		PhotonNetwork.JoinRoom(roomName.text);
 		if(PhotonNetwork.CurrentRoom != null)
 			connectionInfoText.text = roomName.text + "방 접속완료";
 		PhotonNetwork.LocalPlayer.NickName = nickName.text;
-		PhotonNetwork.LoadLevel("MainScenes");
+		//PhotonNetwork.IsMessageQueueRunning = false;
 	}
-	public override void OnJoinRandomFailed(short returnCode, string message)
+	public override void OnJoinRandomFailed(short returnCode, string message)//룸 접속하기(버튼)
 	{
-		PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = 2 });
+		PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = 4 });
 		connectionInfoText.text = "빈 방이 없음, 새로운 방 생성";
 	}
-	public void BackLobby()
+	public void BackLobby()//로비 나가기(버튼)
 	{
 		main.SetActive(true);
 		lobby.SetActive(false);
@@ -105,7 +109,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
 
 	[ContextMenu("정보")]
-	void Info()
+	void Info()//디버그 용
 	{
 		if (PhotonNetwork.InRoom)
 		{

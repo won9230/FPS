@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class PlayerCtrl : LivingEntity
 {
@@ -26,7 +28,7 @@ public class PlayerCtrl : LivingEntity
 	[SerializeField] private Vector3 deadPos;
 
 	[SerializeField] private new Camera camera;
-	[SerializeField] private GameObject trunCamera;
+	//[SerializeField] private GameObject trunCamera;
 	//기타
 	private new Rigidbody rigidbody;
 	private CapsuleCollider capsuleCollider;
@@ -34,30 +36,29 @@ public class PlayerCtrl : LivingEntity
 	public static PlayerCtrl instance = null;
 	[HideInInspector]public float x, y;
 	private MyWeaponCtrl myWeapon;
-
-	#region Singleton
-	private void Awake() //싱글톤
-	{
-		if (instance == null)
-			instance = this;
-		else if (instance != this)
-			Destroy(this.gameObject);
-	}
-	#endregion
-
+	private MyInventory myInventory;
+	private InGameUI inGameUI;
+	private PhotonView PV;
+	[SerializeField] private Transform holder;
 	protected override void Start()
 	{
-
 		capsuleCollider = GetComponent<CapsuleCollider>();
 		rigidbody = GetComponent<Rigidbody>();
 		myWeapon = GetComponentInChildren<MyWeaponCtrl>();
+		PV = GetComponent<PhotonView>();
+		myInventory = GetComponent<MyInventory>();
+		inGameUI = GetComponentInChildren<InGameUI>();
 		originPosY = camera.transform.localPosition.y;
 		applyCrouchPosY = originPosY;
 		anyspeed = walkspeed;
 	}
 	private void Update()
 	{
-		if (!dead && !InGameUI.isChatMode)
+		if (!PV.IsMine)
+		{
+			camera.gameObject.SetActive(false);
+		}
+		if (!dead && !inGameUI.isChatMode && PV.IsMine)
 		{
 			IsGround();
 			TryJump();
@@ -69,7 +70,7 @@ public class PlayerCtrl : LivingEntity
 		}
 		PlayerDie();
 	}
-	private void PlayerRaycast()
+	private void PlayerRaycast() //플레이어 레이캐스트
 	{
 		if(Physics.Raycast(camera.transform.position,camera.transform.forward,out hit, 1000))
 		{
@@ -77,7 +78,7 @@ public class PlayerCtrl : LivingEntity
 			{
 				if (Input.GetKeyDown(KeyCode.E))
 				{
-					hit.collider.GetComponent<MyItemDrop>().Drop();
+					hit.collider.GetComponent<MyItemDrop>().Drop(myInventory);
 				}
 			}
 			Debug.DrawRay(camera.transform.position, camera.transform.forward * hit.distance, Color.red);
@@ -103,6 +104,7 @@ public class PlayerCtrl : LivingEntity
 		currentCameraRotationX -= cameraRotationX;
 		currentCameraRotationX = Mathf.Clamp(currentCameraRotationX, -cameraRotationLimit, cameraRotationLimit);
 		camera.transform.localEulerAngles = new Vector3(currentCameraRotationX, 0f, 0f);
+		//holder.transform.localEulerAngles = new Vector3(currentCameraRotationX, 0f, 0f);
 	}
 
 	private void PlayerMove() //걷기 달리기
@@ -149,7 +151,7 @@ public class PlayerCtrl : LivingEntity
 			PlayerJump();
 		}
 	}
-	private void PlayerJump()
+	private void PlayerJump() //플레이어 점프
 	{
 		if (isCrouch)
 		{
@@ -175,7 +177,7 @@ public class PlayerCtrl : LivingEntity
 		StartCoroutine(CrouchCoroutine());
 	}
 
-	IEnumerator CrouchCoroutine()
+	IEnumerator CrouchCoroutine() //플레이어 코루틴
 	{
 		float _posY = camera.transform.localPosition.y;
 		int count = 0;
@@ -206,7 +208,7 @@ public class PlayerCtrl : LivingEntity
 			StartCoroutine(DeadCoroutine());
 		}
 	}
-	IEnumerator DeadCoroutine()
+	IEnumerator DeadCoroutine() //플레이어 죽음
 	{
 		Debug.Log("시작");
 		Quaternion rot = new Quaternion(0, camera.transform.localRotation.y, camera.transform.localRotation.z, 0);
@@ -217,12 +219,12 @@ public class PlayerCtrl : LivingEntity
 		}
 		camera.enabled = false;
 	}
-	public void CamUp()
+	public void CamUp() //총 반동의한 에임 흔들림
 	{
 		currentCameraRotationX -= Random.Range(0f, myWeapon.currentWeapon.camActionForce);
 		currentCameraRotationY -= Random.Range(-myWeapon.currentWeapon.camActionForce-0.1f, myWeapon.currentWeapon.camActionForce-0.1f);
 	}
-	public void CamSightForce()
+	public void CamSightForce() //총 반동의한 에임 흔들림(조준시)
 	{
 		currentCameraRotationX -= Random.Range(0f, myWeapon.currentWeapon.camActionFineSightForce);
 		currentCameraRotationY -= Random.Range(-myWeapon.currentWeapon.camActionFineSightForce - 0.1f, myWeapon.currentWeapon.camActionFineSightForce - 0.1f);
