@@ -73,27 +73,33 @@ public class BossCtrl : LivingEntity
 	}
 	public void ChackTrace() //플레이어가 가까이 오면 추척
 	{
-		if (dist() <= traceDist * traceDist)
-			ChangeState(eState.Trace);
+		if (playerTra != null)
+		{
+			if (dist() <= traceDist * traceDist)
+				ChangeState(eState.Trace);
+		}
 	}
 	public void MoveCheak() //보스 이동 및 공격
 	{
-		if (dist() <= traceDist * traceDist)
+		if (playerTra != null)
 		{
-			agent.isStopped = false;
-			agent.SetDestination(playerTra.position);
-			anim.SetBool("Trace", true);
+			if (dist() <= traceDist * traceDist)
+			{
+				agent.isStopped = false;
+				agent.SetDestination(playerTra.position);
+				anim.SetBool("Trace", true);
 
-		}
-		if (dist() >= traceDist * traceDist)
-		{
-			agent.isStopped = false;
-			agent.SetDestination(playerTra.position);
-			anim.SetBool("Trace", true);
-		}
-		if (dist() <= attackDist * attackDist)
-		{
-			ChangeState(eState.Attack);
+			}
+			if (dist() >= traceDist * traceDist)
+			{
+				agent.isStopped = false;
+				agent.SetDestination(playerTra.position);
+				anim.SetBool("Trace", true);
+			}
+			if (dist() <= attackDist * attackDist)
+			{
+				ChangeState(eState.Attack);
+			}
 		}
 	}
 

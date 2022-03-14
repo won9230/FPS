@@ -68,7 +68,6 @@ public class MyWeaponCtrl : MonoBehaviour
 			Fire();
 		}
 	}
-
 	private void Fire() //발사(총알 계산)
 	{
 		if (!isReload)
@@ -81,7 +80,6 @@ public class MyWeaponCtrl : MonoBehaviour
 	}
 	private void Shoot() // 발사
 	{
-	
 		StopAllCoroutines();
 		currentWeapon.curentBulletCount--; //총알 --
 		currentFireRate = currentWeapon.fireRate; // 연사속도

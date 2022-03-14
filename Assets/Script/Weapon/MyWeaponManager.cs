@@ -77,6 +77,19 @@ public class MyWeaponManager : MonoBehaviour
 		}
 		yield return null;
 	}
+	private void WeaponChange(string _type, string _name) //무기 바꾸기
+	{
+		if (_type == "GUN" || _type == "Melee")
+		{
+			if (!isChangeWeapon)
+				myWeaponCtrl.WeaponChange(myWeaponTable[_name]);
+		}
+		if (_type == "Sub" || _type == "Melee")
+		{
+			if (!isChangeWeapon)
+				myWeaponCtrl.WeaponChange(myWeaponTable[_name]);
+		}
+	}
 	private void CancelWeaponAciton() //무기 줌인 캔슬
 	{
 		switch (currentWeaponType)
@@ -89,19 +102,7 @@ public class MyWeaponManager : MonoBehaviour
 				break;
 		}
 	}
-	private void WeaponChange(string _type, string _name) //무기 바꾸기
-	{
-		if(_type == "GUN" || _type == "Melee")
-		{
-			if(!isChangeWeapon)
-				myWeaponCtrl.WeaponChange(myWeaponTable[_name]);
-		}	
-		if(_type == "Sub" || _type == "Melee")
-		{
-			if(!isChangeWeapon)
-				myWeaponCtrl.WeaponChange(myWeaponTable[_name]);
-		}
-	}
+
 	private void WeaponAway()//무기 버리기
 	{
 		if (Input.GetKeyDown(KeyCode.G))

@@ -16,7 +16,6 @@ public class IStateBossPatrol : IState<BossCtrl>
 
 	public void OnUpdate(BossCtrl qstate)
 	{
-		
 		qstate.ChackTrace();
 	}
 }

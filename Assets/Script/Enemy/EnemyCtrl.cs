@@ -95,14 +95,13 @@ public class EnemyCtrl : LivingEntity
 			{
 				case eState.Ready:
 					anim.SetBool("Move", false);
-					yield return new WaitForSeconds(1f);
-					state = eState.Trace;
+					if (playerTr != null)
+						state = eState.Trace;
 					break;
 				case eState.Trace:
 					anim.SetBool("Move", true);
 					anim.SetFloat("MoveSpeed", Random.Range(0.9f, 1.2f));
-					if(playerTr != null)
-						TraceTarget(playerTr.position);
+					TraceTarget(playerTr.position);
 					break;
 				case eState.Attack:
 					MoveStop();

@@ -15,20 +15,28 @@ public class InGameUI : MonoBehaviour
 	public bool isChatMode = false;
 	private void Start()
 	{
+		PV = GetComponentInParent<PhotonView>();
+		if (!PV.IsMine)
+		{
+			this.gameObject.SetActive(false);
+			return;
+		}
 		Cursor.visible = false;
 		Cursor.lockState = CursorLockMode.Locked;
 		weaponManager = GetComponentInParent<MyWeaponManager>();
-		PV = GetComponentInParent<PhotonView>();
 		chatManager = FindObjectOfType<ChatManager>();
-		playerHp.maxValue = playerCtrl.maxHp;
+		//playerHp.maxValue = playerCtrl.maxHp;
 	}
 	private void Update()
 	{
-		PlayerHpBar();
-		PlayerBullet();
-		if (Input.GetKeyDown(KeyCode.T) && PV.IsMine)
+		if (playerCtrl != null && PV.IsMine)
 		{
-			ChatMode();
+			PlayerHpBar();
+			PlayerBullet();
+			if (Input.GetKeyDown(KeyCode.T))
+			{
+				ChatMode();
+			}
 		}
 	}
 	private void PlayerHpBar() //플레이어 HP

@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class MiniMapCamera : MonoBehaviour
 {
-    public GameObject player;
+    private PlayerCtrl player;
 	[SerializeField] float offsetY;
+	private void Start()
+	{
+		player = GetComponentInParent<PlayerCtrl>();
+	}
 
 	private void LateUpdate()
 	{
