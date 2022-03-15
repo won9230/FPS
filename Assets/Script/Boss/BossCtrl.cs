@@ -54,7 +54,7 @@ public class BossCtrl : LivingEntity
 	}
 	public void ChangeState(eState state) //스테이트 바꾸기
 	{
-		//Debug.LogWarning(state);
+		Debug.LogWarning(state);
 		m_sm.SetState(m_states[state]);
 	}
 	public bool CheakState(eState state) //스테이트 체크
@@ -131,11 +131,10 @@ public class BossCtrl : LivingEntity
 	}
 	public IEnumerator BossSkillCorutine() //보스 스킬 사용
 	{
-		StopAllCoroutines();
-		agent.speed = bossSpeed * 2f;
+		agent.speed = bossSpeed * 5f;
 		yield return new WaitForSeconds(1f);
 		anim.SetTrigger("Skill");
-		yield return new WaitForSeconds(1.25f);
+		yield return new WaitForSeconds(3f);
 		agent.isStopped = true;
 		yield return new WaitForSeconds(1f);
 		agent.isStopped = false;

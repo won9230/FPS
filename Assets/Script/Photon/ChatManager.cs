@@ -17,13 +17,13 @@ public class ChatManager : MonoBehaviourPunCallbacks
 	}
 	private void Update()
 	{
-		//if (PV.IsMine)
-		//{
-		//	if (Input.GetKeyDown(KeyCode.Return) && chatInput.text != "")
-		//	{
-		//		Send();
-		//	}
-		//}
+		if (PV.IsMine)
+		{
+			if (Input.GetKeyDown(KeyCode.Return) && chatInput.text != "")
+			{
+				Send();
+			}
+		}
 	}
 	public override void OnPlayerEnteredRoom(Player newPlayer)
 	{

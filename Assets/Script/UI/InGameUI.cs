@@ -25,7 +25,7 @@ public class InGameUI : MonoBehaviour
 		Cursor.lockState = CursorLockMode.Locked;
 		weaponManager = GetComponentInParent<MyWeaponManager>();
 		chatManager = FindObjectOfType<ChatManager>();
-		//playerHp.maxValue = playerCtrl.maxHp;
+		playerHp.maxValue = playerCtrl.maxHp;
 	}
 	private void Update()
 	{

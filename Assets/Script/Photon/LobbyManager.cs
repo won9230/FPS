@@ -57,24 +57,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 		PhotonNetwork.JoinLobby();
 		connectionInfoText.text = "로비 접속 성공";
 	}
-	//public override void OnJoinedRoom()
-	//{
-	//	print("방참가 완료");
 
-	//}
-	public override void OnJoinedLobby()
-	{
-		print("로비참가 완료");
-	}
-	//public override void OnJoinedRoom()
-	//{
-	//	StartCoroutine(WaitForStart());
-	//}
-	//IEnumerator WaitForStart()
-	//{
-	//	yield return new WaitForSeconds(3f);
-	//	PhotonNetwork.Instantiate("Player2", transform.position, Quaternion.identity);
-	//}
 	public void CreateRoom() //방 만들기(버튼)
 	{
 		PhotonNetwork.LoadLevel("MainScenes");
@@ -82,7 +65,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 		print(roomName.text);
 		connectionInfoText.text = roomName.text + "방 만들기완료";
 		PhotonNetwork.LocalPlayer.NickName = nickName.text;
-		//PhotonNetwork.IsMessageQueueRunning = false;
 	}
 	public void JoinRoom() //룸 접속하기(버튼)
 	{
@@ -91,7 +73,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 		if(PhotonNetwork.CurrentRoom != null)
 			connectionInfoText.text = roomName.text + "방 접속완료";
 		PhotonNetwork.LocalPlayer.NickName = nickName.text;
-		//PhotonNetwork.IsMessageQueueRunning = false;
+	}
+	public override void OnJoinedLobby()
+	{
+		print("로비참가 완료");
 	}
 	public override void OnJoinRandomFailed(short returnCode, string message)//룸 접속하기(버튼)
 	{

@@ -6,6 +6,7 @@ public class IStateBossSkill : IState<BossCtrl>
 {
 	public void OnEnter(BossCtrl qstate)
 	{
+		qstate.StopAllCoroutines();
 		qstate.StartCoroutine(qstate.BossSkillCorutine());
 	}
 
