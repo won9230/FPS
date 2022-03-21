@@ -105,7 +105,7 @@ public class MyWeaponManager : MonoBehaviour
 
 	private void WeaponAway()//무기 버리기
 	{
-		if (Input.GetKeyDown(KeyCode.G))
+		if (Input.GetKeyDown(KeyCode.G) && currentWeapon != null)
 		{
 			//MyWeaponManager.currentWeapon == null;
 			myWeaponCtrl.WeaponAway();

@@ -102,7 +102,6 @@ public class BossCtrl : LivingEntity
 			}
 		}
 	}
-
 	public IEnumerator BossAttackCorutine()//보스 공격 코루틴
 	{
 		agent.isStopped = true;
@@ -113,6 +112,7 @@ public class BossCtrl : LivingEntity
 	}
 	public IEnumerator BossDie() //보스 죽음 코루틴
 	{
+		StopCoroutine(BossSkillTimeCorutine());
 		yield return new WaitForSeconds(0.2f);
 		hp = 0.1f;
 		anim.SetBool("Dead", true);
@@ -124,7 +124,7 @@ public class BossCtrl : LivingEntity
 		int i = Random.Range(0, 100);
 		Debug.Log(i);
 		yield return new WaitForSeconds(3f);
-		if (i > 0)
+		if (i > 50)
 		{
 			ChangeState(eState.Skill);
 		}

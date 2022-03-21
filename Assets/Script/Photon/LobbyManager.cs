@@ -29,9 +29,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 		connectionInfoText.text = "마스터 서버에 접속중";
 
 	}
-	void Connect()
+	public void Connect()
 	{
-		PhotonNetwork.ConnectUsingSettings();
+		PhotonNetwork.JoinRandomRoom();
+		PhotonNetwork.LocalPlayer.NickName = nickName.text;
 	}
 	//마스터 서버 접속 성공시 자동 실행
 	public override void OnConnectedToMaster()
@@ -80,8 +81,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 	}
 	public override void OnJoinRandomFailed(short returnCode, string message)//룸 접속하기(버튼)
 	{
-		PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = 4 });
+		int random = Random.Range(0, 100);
+		PhotonNetwork.CreateRoom(random.ToString(), new RoomOptions { MaxPlayers = 4 });
+		PhotonNetwork.LocalPlayer.NickName = nickName.text;
 		connectionInfoText.text = "빈 방이 없음, 새로운 방 생성";
+		PhotonNetwork.LoadLevel("MainScenes");
 	}
 	public void BackLobby()//로비 나가기(버튼)
 	{

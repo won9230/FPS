@@ -85,6 +85,7 @@ public class MyWeaponCtrl : MonoBehaviour
 		currentFireRate = currentWeapon.fireRate; // 연사속도
 		CerateBullet(); //총알생성
 		anim.SetTrigger("Shoot"); //애니
+		currentWeapon.gunFlash.Play();
 		StartCoroutine(RetroAction()); //총 앞뒤 반동
 		StartCoroutine(CamAction2());
 		PlaySE(currentWeapon.fire_Sound); //총 소리

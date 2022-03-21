@@ -28,17 +28,18 @@ public class PlayerCtrl : LivingEntity
 	[SerializeField] private Vector3 deadPos;
 
 	[SerializeField] private new Camera camera;
+	[SerializeField] private GameObject miniCamera;
 	//[SerializeField] private GameObject trunCamera;
 	//기타
 	private new Rigidbody rigidbody;
 	private CapsuleCollider capsuleCollider;
 	private RaycastHit hit;
-	public static PlayerCtrl instance = null;
+	//public static PlayerCtrl instance = null;
 	[HideInInspector]public float x, y;
 	private MyWeaponCtrl myWeapon;
 	private MyInventory myInventory;
 	private InGameUI inGameUI;
-	private PhotonView PV;
+	[SerializeField] private PhotonView PV;
 	[SerializeField] private Transform holder;
 	protected override void Start()
 	{
@@ -57,6 +58,7 @@ public class PlayerCtrl : LivingEntity
 		if (!PV.IsMine)
 		{
 			camera.gameObject.SetActive(false);
+			miniCamera.SetActive(false);
 		}
 		if (!dead && !inGameUI.isChatMode && PV.IsMine)
 		{

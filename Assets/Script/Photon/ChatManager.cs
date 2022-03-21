@@ -36,7 +36,7 @@ public class ChatManager : MonoBehaviourPunCallbacks
 	public void Send()
 	{
 		string msg = PhotonNetwork.NickName + " : " + chatInput.text;
-		PV.RPC("ChatRPC",RpcTarget.All,PhotonNetwork.NickName + " : " + chatInput.text);
+		PV.RPC("ChatRPC", RpcTarget.All, PhotonNetwork.NickName + " : " + chatInput.text);
 		chatInput.text = "";
 	}
 

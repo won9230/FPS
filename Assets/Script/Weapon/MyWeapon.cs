@@ -57,4 +57,6 @@ public class MyWeapon : MonoBehaviour
 	public Animator anim;
 	[Tooltip("무기 공격 사운드")]
 	public AudioClip fire_Sound;
+	[Tooltip("총 발사 파티클")]
+	public ParticleSystem gunFlash;
 }

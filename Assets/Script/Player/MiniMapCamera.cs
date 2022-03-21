@@ -14,6 +14,6 @@ public class MiniMapCamera : MonoBehaviour
 	private void LateUpdate()
 	{
 		Vector3 offset = new Vector3(player.transform.position.x, offsetY, player.transform.position.z);
-		transform.position = Vector3.Slerp(transform.position,offset,Time.deltaTime * 3f);
+		transform.position = Vector3.Slerp(transform.position, offset, Time.deltaTime * 3f);
 	}
 }
